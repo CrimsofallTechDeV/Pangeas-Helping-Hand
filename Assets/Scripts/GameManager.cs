@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
@@ -33,11 +34,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetCustomSceneManager(CustomSceneManager customSceneManager)
+    {
+        sceneM = customSceneManager;
+
+        //default music clips:
+        defaultMusicDay = sceneM.musicClipDay;
+        defaultMusicNight = sceneM.musicClipNight;
+    }
+
     #endregion
 
 	public int maxFramerate = 60;
 	public float levelLoadDelay = 2f;
     public Material skyLight, skyDark;
+
+    private AudioClip defaultMusicDay, defaultMusicNight;
+
+    [Space]
+    public UnityEvent OnGameStartedEvennt;
 
     public bool LoadingLevel { get; private set; }
     private string sceneName;
@@ -47,6 +62,7 @@ public class GameManager : MonoBehaviour
 	public bool CanEnterEntrances { get; set; }
 
     public int points { get; private set; }
+
     public void AddPoints(int amount)
     {
         points += amount;
@@ -98,6 +114,7 @@ public class GameManager : MonoBehaviour
         //set day/night sun light
         Invoke(nameof(SetupSceneLight), 0.5f);
         Invoke(nameof(LoadPlayerData), 0.5f);
+        OnGameStartedEvennt?.Invoke();
         //DynamicGI.UpdateEnvironment();
     }
 
@@ -143,14 +160,28 @@ public class GameManager : MonoBehaviour
 
     public void SetupMusic(AudioClip dayClip, AudioClip nightClip)
     {
-        if(IsDay) bgmPlayer.PlayMusic(dayClip);
-        else bgmPlayer.PlayMusic(nightClip);
+        if(IsDay) 
+            bgmPlayer.PlayMusic(dayClip);
+        else 
+            bgmPlayer.PlayMusic(nightClip);
 
         //apply to scene manager for future use
         if (sceneM)
         {
             sceneM.musicClipDay = dayClip;
             sceneM.musicClipNight = nightClip;
+        }
+    }
+
+    public void ResetMusic()
+    {
+        if(IsDay) bgmPlayer.PlayMusic(defaultMusicDay);
+        else bgmPlayer.PlayMusic(defaultMusicNight);
+
+        if(sceneM)
+        {
+            sceneM.musicClipDay = defaultMusicDay;
+            sceneM.musicClipNight = defaultMusicNight;
         }
     }
 

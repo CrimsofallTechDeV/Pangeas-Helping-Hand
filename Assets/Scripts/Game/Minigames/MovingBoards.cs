@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MovingBoards : MonoBehaviour
 {
+    public bool Active = true;
     public int points = 100;
     public bool removePoints = false; //false to add points
 
@@ -14,14 +15,17 @@ public class MovingBoards : MonoBehaviour
     private int direction;
     public Animator animator { get; private set; }
 
-    void Start()
+    private void Start()
     {
         direction = startMovingRight ? 1 : -1;
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
+        if(!Active)
+            return;
+
         // Move the object
         transform.Translate(Vector3.right * direction * speed * Time.deltaTime, Space.World);
 

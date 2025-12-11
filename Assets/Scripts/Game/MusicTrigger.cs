@@ -16,7 +16,8 @@ public class MusicTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.SetupMusic(outMusicDay, outMusicNight);
+            //GameManager.Instance.SetupMusic(outMusicDay, outMusicNight);
+            GameManager.Instance.ResetMusic();
         }
     }
 }

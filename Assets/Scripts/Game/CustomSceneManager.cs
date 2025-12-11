@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [DefaultExecutionOrder(1)]
 public class CustomSceneManager : MonoBehaviour
@@ -11,6 +12,6 @@ public class CustomSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.sceneM = this;
+        GameManager.Instance.SetCustomSceneManager(this);
     }
 }

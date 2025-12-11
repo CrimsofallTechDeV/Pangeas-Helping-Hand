@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184826d284b1784ebd4ff52e7d8ca7c, type: 3}
+  m_Name: Camera
+  m_EditorClassIdentifier: 
+  itemName: Camera
+  Icon: {fileID: 21300000, guid: 72937357d333828458054c47efc884b0, type: 3}
+  pickupObject: {fileID: 1742483629519990852, guid: f53b023975ca4f8499305d73566a9f9c, type: 3}

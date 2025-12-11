@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmPlayer: {fileID: 1555489102979784982}
   maxFramerate: 45
+  levelLoadDelay: 4
   skyLight: {fileID: 2100000, guid: e022ba365a5798746abeaea55a116aeb, type: 2}
   skyDark: {fileID: 2100000, guid: 59a3460a3689fe048bbc23ce6a8c1635, type: 2}
 --- !u!114 &1555489102979784982

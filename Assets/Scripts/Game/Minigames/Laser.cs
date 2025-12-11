@@ -50,7 +50,7 @@ public class Laser : MonoBehaviour
             done = true;
 
             MovingBoards boards = other.GetComponent<MovingBoards>();
-            if(boards!=null)
+            if(boards!=null && boards.Active)
             {
                 //add/remove points!
                 if(boards.removePoints)

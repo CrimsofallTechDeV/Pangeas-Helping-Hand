@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class FlowerGlitter : MonoBehaviour
 {
 	public ParticleSystem[] glitterParticle; 
+	private AudioSource source;
+
+	private void Start()
+	{
+		source = GetComponent<AudioSource>();
+	}
 	
 	private void OnParticleCollision(GameObject other) 
 	{
@@ -18,5 +25,7 @@ public class FlowerGlitter : MonoBehaviour
 			if(!glitterParticle[i].isPlaying) 
 				glitterParticle[i].Play();
 		}
+
+		source.PlayOneShot(source.clip, source.volume);
 	}
 }

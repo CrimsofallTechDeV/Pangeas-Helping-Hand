@@ -7,12 +7,15 @@ public class BoyClimb : MonoBehaviour
     public NPC npc;
     public float climbDelay = 15.0f;
 
+    [Space]
+    public AudioClip music;
+
     public bool win { get; private set; }
     private bool raceComplete;
 
     private void Start()
     {
-        npc.dialogBehaviour.BindExternalFunction("StartClimbing", ()=>StartClimbing());
+        npc.dialogBehaviour.BindExternalFunction("StartClimbing", () => StartClimbing());
 
         idleObject.SetActive(true);
         raceObject.SetActive(false);
@@ -26,6 +29,8 @@ public class BoyClimb : MonoBehaviour
         raceObject.SetActive(true);
         loseObject.SetActive(false);
         jumpDownObject.SetActive(false);
+
+        GameManager.Instance.SetupMusic(music, music);
 
         Invoke(nameof(ClimbingComplete), climbDelay);
     }
@@ -49,6 +54,8 @@ public class BoyClimb : MonoBehaviour
         raceObject.SetActive(false);
         loseObject.SetActive(false);
         jumpDownObject.SetActive(true);
+
+        GameManager.Instance.ResetMusic();
     }
 
     public void OnPlayerReachedTop()

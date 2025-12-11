@@ -13,6 +13,7 @@ namespace cherrydev
 {
     public class DialogBehaviour : MonoBehaviour
     {
+		[SerializeField] private GameObject dialogUI;
         [SerializeField] private float _dialogCharDelay;
         [SerializeField] private List<KeyCode> _nextSentenceKeyCodes;
         [SerializeField] private bool _isCanSkippingText = true;
@@ -83,7 +84,12 @@ namespace cherrydev
         public DialogExternalFunctionsHandler ExternalFunctionsHandler { get; private set; }
         public DialogVariablesHandler VariablesHandler => _variablesHandler;
 
-        private void Awake() => ExternalFunctionsHandler = new DialogExternalFunctionsHandler();
+        private void Awake() {
+			ExternalFunctionsHandler = new DialogExternalFunctionsHandler();
+			if(dialogUI!=null)
+				dialogUI.SetActive(false);
+			
+		}
 
         private void OnEnable()
         {

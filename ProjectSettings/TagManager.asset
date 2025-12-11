@@ -19,6 +19,7 @@ TagManager:
   - Key
   - Brush
   - Canvas
+  - Bug
   layers:
   - Default
   - TransparentFX

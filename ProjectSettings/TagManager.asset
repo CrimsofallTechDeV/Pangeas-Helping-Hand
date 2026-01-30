@@ -20,6 +20,7 @@ TagManager:
   - Brush
   - Canvas
   - Bug
+  - Axotol
   layers:
   - Default
   - TransparentFX

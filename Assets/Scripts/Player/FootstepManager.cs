@@ -82,21 +82,4 @@ public class FootstepManager : MonoBehaviour
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(transform.position, radius);
 	}
-	
-	// OnControllerColliderHit is called when the controller hits a collider while performing a Move.
-	/*private void OnTriggerEnter(Collider hit) {
-		if(hit.tag == "Untagged") return;
-			if(hit.tag == "Concrete") {
-				source.clip = concreteSteps;
-			}
-			if(hit.tag == "Wood") {
-				source.clip = woodStep;
-			}
-			if(hit.tag == "Grass") {
-				source.clip = grassStep;
-			}
-			if(hit.tag == "Water") {
-				source.clip = waterStep;
-			}
-	}*/
 }

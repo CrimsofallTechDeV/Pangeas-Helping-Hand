@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class FlowerGlitter : MonoBehaviour
 {
-	public ParticleSystem[] glitterParticle; 
+	public ParticleSystem[] glitterParticle;
+	public NPC npc; //the npc to progress dialouge for after player watered this flowers
+	
 	private AudioSource source;
+	private bool progressedDialouge = false;
 
 	private void Start()
 	{
@@ -13,8 +16,7 @@ public class FlowerGlitter : MonoBehaviour
 	
 	private void OnParticleCollision(GameObject other) 
 	{
-		if(other.tag == "Water")
-		{
+		if(other.tag == "Water") {
 			Glitter();
 		}
 	}
@@ -26,6 +28,10 @@ public class FlowerGlitter : MonoBehaviour
 				glitterParticle[i].Play();
 		}
 
+		if(npc!=null && !progressedDialouge) {
+			progressedDialouge = true;
+			npc.ProgressDialouge();
+		}
 		source.PlayOneShot(source.clip, source.volume);
 	}
 }

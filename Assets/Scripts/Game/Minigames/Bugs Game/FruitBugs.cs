@@ -33,6 +33,11 @@ public class FruitBugs : MonoBehaviour
 	
 	private void SpawnRandomBug()
 	{
+		//spawn no more if there are no fruits!
+		if(fruits.Count == 0) {
+			return;
+		}
+
 		BugAI ai = Instantiate(bugPrefab, spawnAreas[Random.Range(0, spawnAreas.Length)].position, Quaternion.identity).GetComponent<BugAI>();
 		bugs.Add(ai.gameObject);
 		ai.SetTarget(fruits[Random.Range(0, fruits.Count)]);

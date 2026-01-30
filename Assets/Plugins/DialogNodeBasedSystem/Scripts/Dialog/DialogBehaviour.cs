@@ -84,10 +84,17 @@ namespace cherrydev
         public DialogExternalFunctionsHandler ExternalFunctionsHandler { get; private set; }
         public DialogVariablesHandler VariablesHandler => _variablesHandler;
 
-        private void Awake() {
+        private void Awake() 
+        {
 			ExternalFunctionsHandler = new DialogExternalFunctionsHandler();
 			if(dialogUI!=null)
 				dialogUI.SetActive(false);
+            else
+            {
+                //try get the dialougfe UI from children
+                dialogUI = transform.GetChild(0).gameObject;
+                dialogUI.SetActive(false);
+            }
 			
 		}
 

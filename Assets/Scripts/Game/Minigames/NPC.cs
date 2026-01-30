@@ -12,16 +12,19 @@ public class NPC : MonoBehaviour
 	
 	//automatically progress dialouges when player talks with this NPC (will progress until there are no more dialouge objects left)
 	public bool autoProgressDiagOnTalk = false;
+	public bool stopAfterOneProgress = false; //will stop after progressing dialouge by 1
 	
 	[Space]
 	public Action OnTalkedAction;
 
     private int dialougeIndex;
+	private bool hasProgressedOnce = false;
 	private Animator animator;
 
 	private void Start()
 	{
 		animator = GetComponent<Animator>();
+		if(animator == null) animator = GetComponentInChildren<Animator>();
 	}
 
     public void OnTalked(bool allowRestrictions = true)
@@ -36,9 +39,14 @@ public class NPC : MonoBehaviour
         dialogBehaviour.StartDialog(nodeGraphs[dialougeIndex]);
 		OnTalkedAction?.Invoke();
         
-		if(autoProgressDiagOnTalk)
+		if(autoProgressDiagOnTalk) {
+			if(stopAfterOneProgress && hasProgressedOnce)
+				return;
+
 			ProgressDialouge();
-    }
+			hasProgressedOnce = true;
+    	}
+	}
 
     public void ProgressDialouge()
     {
@@ -47,6 +55,11 @@ public class NPC : MonoBehaviour
         if(dialougeIndex >= nodeGraphs.Length) 
             dialougeIndex = nodeGraphs.Length - 1;
     }
+
+	public void SetDialougeIndex(int index)
+	{
+		dialougeIndex = index;
+	}
     
 	public void SetAnimatorBool_On(string Name)
 	{

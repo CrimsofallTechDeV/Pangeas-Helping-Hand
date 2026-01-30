@@ -12,7 +12,7 @@ public class ShootingGame : MonoBehaviour
 
     private void Start()
     {
-        behaviour.BindExternalFunction("Shoot",() => ActivateGame());
+        behaviour.BindExternalFunction("ShootYes",() => ActivateGame());
 
         if(!Active)
         {

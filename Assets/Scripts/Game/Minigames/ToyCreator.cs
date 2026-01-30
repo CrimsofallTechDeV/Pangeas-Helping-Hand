@@ -5,6 +5,7 @@ namespace CrimsofallTechnologies.XR.Gameplay
     public class ToyCreator : MonoBehaviour
     {
         public int toysCount = 3;
+        public GameObject elephant;
 
         private int _toyCount = 0;
 
@@ -25,7 +26,8 @@ namespace CrimsofallTechnologies.XR.Gameplay
 
         private void CreateNewToy()
         {
-            Debug.Log("Creating new toy...");
+            //enable and it will play all animations itself!
+            elephant.SetActive(true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.InputSystem;
@@ -75,7 +76,7 @@ public class PictureCamera : MonoBehaviour
 			Texture2D tex = new Texture2D(2, 2);
 			tex.LoadImage(bytes);
 
-			return tex;
+			return FlipTextureVertically(tex);
 		}
 		else
 		{
@@ -84,6 +85,24 @@ public class PictureCamera : MonoBehaviour
 		
 		//means error loading image sprite
 		return null;
+	}
+
+	private Texture2D FlipTextureVertically(Texture2D tex)
+	{
+		Color[] pixels = tex.GetPixels();
+		int width = tex.width;
+		int height = tex.height;
+		Color[] flipped = new Color[pixels.Length];
+
+		for (int y = 0; y < height; y++)
+		{
+			int flippedRow = height - 1 - y;
+			Array.Copy(pixels, y * width, flipped, flippedRow * width, width);
+		}
+
+		tex.SetPixels(flipped);
+		tex.Apply();
+		return tex;
 	}
 	
 	public void OnHeldChange(bool _held)

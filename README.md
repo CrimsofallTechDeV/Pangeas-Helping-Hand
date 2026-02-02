@@ -19,7 +19,7 @@ Contents
 - LICENSE                - Repository license (view-only rules + collaborator exceptions)
 
 Quick start (for collaborators)
-1. Ensure you have a compatible Unity Editor version. Recommended: Unity 2020.3 LTS or later (confirm exact version with project maintainers).
+1. Ensure you have a compatible Unity Editor version. Recommended: Unity 6.3 (6000.3.3f1) LTS or later (confirm exact version with project maintainers).
 2. Install a VR runtime/provider (OpenXR, SteamVR, or Oculus Integration) according to the target headset.
 3. Clone the repository (collaborators only):
    git clone https://github.com/Crimsofall-Technologies/Pangeas-Helping-Hand.git

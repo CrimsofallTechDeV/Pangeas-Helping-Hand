@@ -22,7 +22,8 @@ public class MiniSoundSetting : MonoBehaviour
 			panel.SetActive(!panel.activeSelf);
 		}
 
-		if(jumpAction.action.WasPressedThisFrame() && gravityProvider.isGrounded)
+		//if(jumpAction.action.WasPressedThisFrame() && gravityProvider.isGrounded)
+		if(jumpAction.action.WasPressedThisFrame())
         {
             jumpSource.PlayOneShot(jumpSource.clip, jumpSource.volume);
         }

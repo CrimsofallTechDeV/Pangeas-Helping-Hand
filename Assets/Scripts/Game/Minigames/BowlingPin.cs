@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BowlingPin : MonoBehaviour
 {
@@ -31,14 +31,15 @@ public class BowlingPin : MonoBehaviour
 		if(hidden) return;
 		
 		//hide all pins and ball and reset them after a few seconds!
-		if(col.tag == "Ball") {
-			//for (int i = 0; i < pins.Length; i++)
-			//	pins[i].gameObject.SetActive(false);
-			
+		if(col.tag == "Ball") 
+		{
 			ball.SetActive(false);
 			Invoke(nameof(ResetBall), 2f);
 			Invoke(nameof(ResetPins), resetTime);
 			hidden = true;
+
+			if(!GameManager.Instance.thingsDone.Contains("BowlingPlayed"))
+                GameManager.Instance.thingsDone.Add("BowlingPlayed");
 		}
 	}
 

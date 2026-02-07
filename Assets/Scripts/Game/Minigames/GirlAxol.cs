@@ -43,6 +43,9 @@ namespace CrimsofallTechnologies.XR.Gameplay
             //play the hold out hands animation
             animator.SetBool("Hold Out Hands", true);
             bowSpawned = true;
+
+            if(!GameManager.Instance.thingsDone.Contains("BowFound"))
+                GameManager.Instance.thingsDone.Add("BowFound");
         }
 
         private void OnTriggerEnter(Collider other)

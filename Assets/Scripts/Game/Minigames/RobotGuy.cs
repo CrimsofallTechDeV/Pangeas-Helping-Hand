@@ -7,13 +7,12 @@ public class RobotGuy : MonoBehaviour
 	
 	private Animator animator;
 	private bool isPlaying = false;
-	private AudioSource source;
+	public AudioSource source;
 	private NPC npc;
 	private bool progressedDialouge = false;
 	
 	private void Start() 
 	{
-		source = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		npc = GetComponent<NPC>();
 	}

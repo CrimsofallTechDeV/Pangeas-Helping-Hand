@@ -8,6 +8,8 @@ public class DarkWoodScary : MonoBehaviour
     public VolumeProfile normalProfile;
     public VolumeProfile scaryProfile;
 
+    public GameObject[] characters;
+
     private void Start()
     {
         ppVolume.profile = normalProfile;
@@ -18,6 +20,11 @@ public class DarkWoodScary : MonoBehaviour
         if(other.tag == "Player")
         {
             ppVolume.profile = scaryProfile;
+
+            for (int i = 0; i < characters.Length; i++)
+            {
+                characters[i].SetActive(false);
+            }
         }
     }
 }

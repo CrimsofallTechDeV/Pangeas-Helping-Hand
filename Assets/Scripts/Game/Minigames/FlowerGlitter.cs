@@ -33,5 +33,8 @@ public class FlowerGlitter : MonoBehaviour
 			npc.ProgressDialouge();
 		}
 		source.PlayOneShot(source.clip, source.volume);
+
+		if(!GameManager.Instance.thingsDone.Contains("WateredFlowers"))
+			GameManager.Instance.thingsDone.Add("WateredFlowers"); //add to things done so that it can be checked in other scripts that care about this! (like the journal)
 	}
 }

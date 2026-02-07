@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
 {
     public Image hpFill;
     public Text pointsText;
-    public Animator loadingAnimator;
     public GameObject playerInventoryGO;
     public ItemVar testItem;
 
@@ -28,7 +27,6 @@ public class UIManager : MonoBehaviour
     public void SetMainMenuValue(bool value)
     {
         IsMenu = value;
-
         gameObject.SetActive(!IsMenu);
     }
 
@@ -38,7 +36,6 @@ public class UIManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             GameManager.ui = this;
-            loadingAnimator.SetBool("Open", false);
 
             musicLevel = PlayerPrefs.GetFloat("musicVol", 0f);
             soundLevel = PlayerPrefs.GetFloat("soundVol", 0f);
@@ -71,17 +68,6 @@ public class UIManager : MonoBehaviour
     {
         hpFill.fillAmount = (float)pHealth.currentHealth / (float)pHealth.maxHealth;
         pointsText.text = "Score: "+GameManager.Instance.points + "";
-    }
-
-    public void FakeLoading()
-    {
-        loadingAnimator.SetBool("Open", true);
-        Invoke(nameof(LoadingOff), 1f);
-    }
-
-    private void LoadingOff()
-    {
-        loadingAnimator.SetBool("Open", false);
     }
 
     public void ToggleInventory()

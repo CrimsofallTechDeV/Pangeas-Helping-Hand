@@ -10,13 +10,15 @@ public class FruitBugs : MonoBehaviour
 	public Transform[] spawnAreas;
 	public Transform[] fruitSpawnAreas;
 	public List<Transform> fruits;
+	private Transform[] allFruits_backup;
 	public AudioClip music;
 
-	
 	public float minSpawnDelay = 2f, maxSpawnDelay = 4f;
 
 	private List<GameObject> bugs = new List<GameObject>();
 	private float lastTime;
+
+	private void Start() { allFruits_backup = fruits.ToArray(); }
 	
 	private void Update()
 	{
@@ -56,6 +58,10 @@ public class FruitBugs : MonoBehaviour
 			}
 			bugs.Clear();
 			DeactivateGame();
+
+			//means all fruits are gone, player wins!
+			if(!GameManager.Instance.thingsDone.Contains("FruitBugsDone"))
+                GameManager.Instance.thingsDone.Add("FruitBugsDone");
         }
 	}
 
@@ -75,6 +81,13 @@ public class FruitBugs : MonoBehaviour
     {
         Active = false;
 		GameManager.Instance.ResetMusic();
+
+		//repsawn all fruits for next time!
+		for (int i = 0; i < allFruits_backup.Length; i++)
+		{
+			allFruits_backup[i].gameObject.SetActive(true);
+			fruits.Add(allFruits_backup[i]);
+		}
     }
 
 	public void PickedFruit(Transform area)

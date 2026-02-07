@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
@@ -47,9 +48,12 @@ public class GameManager : MonoBehaviour
 
 	public int maxFramerate = 60;
 	public float levelLoadDelay = 2f;
-    public Material skyLight, skyDark;
 
     private AudioClip defaultMusicDay, defaultMusicNight;
+
+    public List<string> thingsDone = new List<string>();
+    public int maxThingsToDo = 0;
+    public PlayerHandObjectTracker handTracker;
 
     [Space]
     public UnityEvent OnGameStartedEvennt;
@@ -114,12 +118,21 @@ public class GameManager : MonoBehaviour
         //set day/night sun light
         Invoke(nameof(SetupSceneLight), 0.5f);
         Invoke(nameof(LoadPlayerData), 0.5f);
+        Invoke(nameof(DisableLoadingUI), 3f);
         OnGameStartedEvennt?.Invoke();
-        //DynamicGI.UpdateEnvironment();
+    }
+
+    private void DisableLoadingUI()
+    {
+        if(LoadingUI.Instance != null) LoadingUI.Instance.DisableScreen();
     }
 
     private void SetupSceneLight()
     {
+        //setup ender game
+        if(sceneM != null && sceneM.enderManager != null)
+            sceneM.enderManager.hexMan.SetActive(thingsDone.Count == maxThingsToDo);
+
         if (IsDay)
         {
             if (sceneM != null)
@@ -134,7 +147,7 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i < sceneM.nightObjects.Length; i++)
                     sceneM.nightObjects[i].SetActive(false);
             }
-            RenderSettings.skybox = skyLight;
+            RenderSettings.skybox = sceneM.skyLight;
 
         }
         else
@@ -154,7 +167,7 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i < sceneM.nightObjects.Length; i++)
                     sceneM.nightObjects[i].SetActive(true);
             }
-            RenderSettings.skybox = skyDark;
+            RenderSettings.skybox = sceneM.skyDark;
         }
     }
 
@@ -193,8 +206,7 @@ public class GameManager : MonoBehaviour
         LoadingLevel = true;
         sceneName = Name;
         sceneM = null;
-        if (ui != null)
-            ui.loadingAnimator.SetBool("Open", true);
+        if(LoadingUI.Instance != null) LoadingUI.Instance.EnableScreen();
 	    Invoke(nameof(DelayedLoadLevel), levelLoadDelay);
     }
 

@@ -70,7 +70,7 @@ AnimatorStateMachine:
     m_Position: {x: 800, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -262857148539312501}
-    m_Position: {x: 520, y: -20, z: 0}
+    m_Position: {x: 530, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9003292859886177736}
     m_Position: {x: 810, y: 290, z: 0}
@@ -131,7 +131,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|JumpDownLand
+  m_Name: JumpDownLand
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -186,7 +186,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|ClimbStart
+  m_Name: ClimbStart
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -213,7 +213,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|IdleLose
+  m_Name: IdleLose
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -293,7 +293,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|IdleWinTalking
+  m_Name: IdleWinTalking
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -346,7 +346,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|JumpToWall
+  m_Name: JumpToWall
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -588,7 +588,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|ClimbLoop
+  m_Name: ClimbLoop
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -666,7 +666,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|IdleWin
+  m_Name: IdleWin
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -719,7 +719,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|JumpDown
+  m_Name: JumpDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

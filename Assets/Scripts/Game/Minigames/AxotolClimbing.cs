@@ -8,6 +8,7 @@ public class AxotolClimbing : MonoBehaviour
     public GameObject gfx;
     public NPC npc;
     public Animator gfxAnimator;
+    public AudioClip climbingClip;
     public DialogNodeGraph winGraph, loseGraph;
 
     [Range(0.1f, 1f)]
@@ -25,6 +26,7 @@ public class AxotolClimbing : MonoBehaviour
 
     public void StartClimbing()
     {
+        GameManager.Instance.SetupMusic(climbingClip, climbingClip); //play climbing music when game starts
         parentAnimator.speed = animatorSpeed;
         IsClimbing = true;
         gfx.SetActive(true);
@@ -43,6 +45,9 @@ public class AxotolClimbing : MonoBehaviour
             gfxAnimator.SetBool("Lose", true);
             npc.nodeGraphs[1] = loseGraph;
             npc.ProgressDialouge();
+
+            if(!GameManager.Instance.thingsDone.Contains("AxolotlClimbing"))
+                GameManager.Instance.thingsDone.Add("AxolotlClimbing");
         }
         else
         {
@@ -70,5 +75,6 @@ public class AxotolClimbing : MonoBehaviour
         }
 
         gfxAnimator.SetTrigger("Land");
+        GameManager.Instance.ResetMusic(); //reset music on game end
     }
 }

@@ -19,7 +19,8 @@ public class EatableFruit : MonoBehaviour
                 fb.RemoveBug(other.gameObject);
 
                 Destroy(other.gameObject, 2f);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                gameObject.SetActive(false);
                 ai.animator.SetBool("Splat", true);
             }
         }

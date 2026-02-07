@@ -10,6 +10,7 @@ public class PlayerHandObjectTracker : MonoBehaviour
     private void Start()
     {
         GameManager.playerObject = transform;
+        GameManager.Instance.handTracker = this;
     }
 
     public GameObject GetLeftHandObject()

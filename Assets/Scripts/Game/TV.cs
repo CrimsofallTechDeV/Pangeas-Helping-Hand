@@ -13,6 +13,8 @@ namespace CrimsofallTechnologies.XR.Gameplay
         public Transform outForcePoint;
         public float ejectForce = 100f;
 
+        public AudioClip ejectClip, insertClip;
+
         private string CurrentTape = "";
         private GameObject InsertedTape;
         private Vector3[] tapePos;
@@ -48,8 +50,9 @@ namespace CrimsofallTechnologies.XR.Gameplay
 
         public void Eject()
         {
-            if(hasTape) {
-                //animator.SetBool("Inserted", false);
+            if(hasTape)
+            {
+                source.PlayOneShot(ejectClip);
                 player.Stop();
                 blackScreen.SetActive(true);
                 Invoke(nameof(ReturnTape), 1.5f); //return to table.
@@ -68,6 +71,13 @@ namespace CrimsofallTechnologies.XR.Gameplay
             tapeRB.AddForce(outForcePoint.forward * ejectForce, ForceMode.Impulse);
             tapeRB = null;
             hasTape = false;
+
+            Invoke(nameof(ResetTapeName), 1f);
+        }
+
+        private void ResetTapeName()
+        {
+            CurrentTape = "";
         }
 
         public void EnterLevel()
@@ -97,7 +107,7 @@ namespace CrimsofallTechnologies.XR.Gameplay
             blackScreen.SetActive(false);
 
             //play sound too
-            source.PlayOneShot(source.clip, source.volume);
+            source.PlayOneShot(insertClip, source.volume);
         }
 
         private void OnTriggerEnter(Collider other)

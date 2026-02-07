@@ -2,6 +2,7 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Hands.OpenXR;
 
 namespace CrimsofallTechnologies.XR.Interaction {
     public class Entrance : Interactable
@@ -82,10 +83,18 @@ namespace CrimsofallTechnologies.XR.Interaction {
 	        	GetComponent<Collider>().isTrigger = true;
 	        	Destroy(other.gameObject);
 	        }
-
-
+            
+            //do not allow entering if plaeyr carries dark wood key!
 	        if(other.tag == "Player" && !Locked)
             {
+                GameObject g = GameManager.Instance.handTracker.GetLeftHandObject();
+                if(g == null)
+                    g = GameManager.Instance.handTracker.GetRightHandObject();
+                if(g != null && g.GetComponent<DarkWoodKey>() != null)
+                {
+                    return;
+                }
+
                 GameManager.Instance.OnEnteredEntrance();
                 Teleport();
             }

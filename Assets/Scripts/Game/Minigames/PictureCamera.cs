@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PictureCamera : MonoBehaviour
 {
 	public InputActionProperty inputActionLeft, inputActionRight;
+	public AudioSource audioSource;
 	public Camera gameCamera;       // Assign your in-game camera here
 	public GameObject imageObject, screen;
 	
@@ -40,6 +41,8 @@ public class PictureCamera : MonoBehaviour
 
 	public void CaptureAndSave()
 	{
+		audioSource.PlayOneShot(audioSource.clip);
+
 		// Create a temporary RenderTexture
 		RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 24);
 		gameCamera.targetTexture = rt;

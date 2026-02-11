@@ -49,7 +49,7 @@ Requesting collaborator access
   - Your GitHub username
   - Role (developer, tester, artist)
   - Reason for access and expected changes
-- Or contact the owner/organization directly: https://github.com/Crimsofall-Technologies
+- Or contact the owner/organization directly: https://github.com/CrimsofallTechDeV
 
 License summary
 This repository is distributed under a custom "View-Only License (Collaborator-Restricted)". The LICENSE file in this repository contains the full terms. In short:
@@ -66,4 +66,4 @@ Acknowledgements
 - Unity engine and community packages
 
 Contact
-- Repository owner: Crimsofall-Technologies — https://github.com/Crimsofall-Technologies
+- Repository owner: Crimsofall-Technologies — https://github.com/CrimsofallTechDeV

@@ -47,8 +47,8 @@ public class AxotolClimbing : MonoBehaviour
             npc.nodeGraphs[1] = loseGraph;
             npc.ProgressDialouge();
 
-            if(!GameManager.Instance.thingsDone.Contains("AxolotlClimbing"))
-                GameManager.Instance.thingsDone.Add("AxolotlClimbing");
+            //if(!GameManager.Instance.thingsDone.Contains("AxolotlClimbing"))
+            //    GameManager.Instance.thingsDone.Add("AxolotlClimbing");
         }
         else
         {

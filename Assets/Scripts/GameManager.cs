@@ -66,17 +66,19 @@ namespace CrimsofallTechnologies.VR
 
         public List<string> thingsDone = new List<string>();
         public int maxThingsToDo = 0;
-        public PlayerHandObjectTracker handTracker;
 
         [Space]
         public UnityEvent OnGameStartedEvennt;
 
+        public PlayerHandObjectTracker handTracker { get; set; }
         public bool LoadingLevel { get; private set; }
         private string sceneName;
         public bool InteractedRecent { get; private set; } //has recently interacted with something?
         public bool IsDay { get; set; }
         public bool EnteredEntrance { get; private set; }
         public bool CanEnterEntrances { get; set; }
+
+        #region POINTS
 
         public int points { get; private set; }
 
@@ -90,6 +92,8 @@ namespace CrimsofallTechnologies.VR
             points -= amount;
             ui.UpdateUI();
         }
+
+        #endregion
 
         public void SetDayNightValue(bool value)
         {

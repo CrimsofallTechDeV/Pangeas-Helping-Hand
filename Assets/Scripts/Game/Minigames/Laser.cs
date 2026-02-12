@@ -1,64 +1,61 @@
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public bool showDebug = false;
-    public LineRenderer lineRenderer;
-    public Transform checkPoint;
-    public GameObject decalEffect;
-    public float laserLength = 4f;
-    public float speed = 10f;
-
-    private bool done;
-
-    private void Start()
+    public class Laser : MonoBehaviour
     {
-        if (lineRenderer == null)
-            lineRenderer = GetComponent<LineRenderer>();
+        public bool showDebug = false;
+        public LineRenderer lineRenderer;
+        public Transform checkPoint;
+        public GameObject decalEffect;
+        public float laserLength = 4f;
+        public float speed = 10f;
 
-        lineRenderer.positionCount = 2;
+        private bool done;
 
-        // Local positions from start to end of the beam
-        lineRenderer.SetPosition(0, Vector3.zero);
-        lineRenderer.SetPosition(1, Vector3.forward * laserLength);
-
-        GetComponent<AudioSource>().Play();
-    }
-
-    private void Update()
-    {
-		if(lineRenderer.enabled == false) return;
-		
-        // Move the entire laser object forward
-        transform.position += transform.forward * speed * Time.deltaTime;
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        //ignore triggers
-        if(other.isTrigger || done) return;
-
-        if (other.tag != "Player" && other.tag != "Laser" && other.tag != "NoCollision")
+        private void Start()
         {
-            if(showDebug)
-                Debug.Log("Laser hit: " + other.name);
+            if (lineRenderer == null)
+                lineRenderer = GetComponent<LineRenderer>();
 
-			lineRenderer.enabled = false;
-            Destroy(gameObject, 5f);
-            Destroy(Instantiate(decalEffect, checkPoint.position, Quaternion.identity), 1f);
+            lineRenderer.positionCount = 2;
 
-            done = true;
+            // Local positions from start to end of the beam
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.forward * laserLength);
 
-            MovingBoards boards = other.GetComponent<MovingBoards>();
-            if(boards!=null && boards.Active)
+            GetComponent<AudioSource>().Play();
+        }
+
+        private void Update()
+        {
+            if(lineRenderer.enabled == false) return;
+            
+            // Move the entire laser object forward
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            //ignore triggers
+            if(other.isTrigger || done) return;
+
+            if (other.tag != "Player" && other.tag != "Laser" && other.tag != "NoCollision")
             {
-                //add/remove points!
-                if(boards.removePoints)
-                    GameManager.Instance.RemovePoints(boards.points);
-                else
-                    GameManager.Instance.AddPoints(boards.points);
+                if(showDebug)
+                    Debug.Log("Laser hit: " + other.name);
 
-                boards.animator.SetBool("Hit", true);
+                lineRenderer.enabled = false;
+                Destroy(gameObject, 5f);
+                Destroy(Instantiate(decalEffect, checkPoint.position, Quaternion.identity), 1f);
+
+                done = true;
+
+                MovingBoards boards = other.GetComponent<MovingBoards>();
+                if(boards!=null && boards.Active)
+                {
+                    boards.OnShot();
+                }
             }
         }
     }

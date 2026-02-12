@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 {
     public DialogBehaviour dialogBehaviour;
     public DialogNodeGraph[] nodeGraphs;
+	public int startingDialougeIndex = 0; //the dialouge index to start at (set in inspector)
 	public bool setTalkAnimationWhileTalking = false; //must have a trigger Talk and animation in the animator component!
 	public bool DisableTalk = false; //will not talk if this is true
 	
@@ -17,12 +18,13 @@ public class NPC : MonoBehaviour
 	[Space]
 	public Action OnTalkedAction;
 
-    private int dialougeIndex;
+    public int dialougeIndex { get; private set; }
 	private bool hasProgressedOnce = false;
 	private Animator animator;
 
 	private void Start()
 	{
+		dialougeIndex = startingDialougeIndex;
 		animator = GetComponent<Animator>();
 		if(animator == null) animator = GetComponentInChildren<Animator>();
 	}
@@ -31,6 +33,9 @@ public class NPC : MonoBehaviour
 	{
         if((allowRestrictions && DisableTalk) || dialogBehaviour._isDialogStarted)
             return;
+
+		if(nodeGraphs.Length == 0)
+			return;
 		
 		if(setTalkAnimationWhileTalking && animator != null) {
 			animator.SetTrigger("Talk");

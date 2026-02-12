@@ -4,6 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
 public class FootstepManager : MonoBehaviour
 {
+	public bool Active;
 	public XRMovementTracker movementTracker;
 	public GravityProvider gravity;
 	public AudioClip concreteSteps, grassStep, woodStep, waterStep;
@@ -24,6 +25,9 @@ public class FootstepManager : MonoBehaviour
 	
 	private void Update()
 	{
+		if(!Active)
+			return;
+
 		//really moving? play footsteps
 		if(movementTracker.IsMoving && gravity.isGrounded)
 		{

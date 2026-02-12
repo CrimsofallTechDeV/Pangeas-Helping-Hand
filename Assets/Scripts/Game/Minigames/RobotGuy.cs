@@ -3,13 +3,14 @@
 public class RobotGuy : MonoBehaviour
 {
 	public float animationTime = 10f;
-	public int dialougeIndex = 2; //the dialouge index to set after player drops water on the robot
 	
 	private Animator animator;
 	private bool isPlaying = false;
 	public AudioSource source;
 	private NPC npc;
 	private bool progressedDialouge = false;
+
+	private int lastDialougeIndex = 0;
 	
 	private void Start() 
 	{
@@ -23,10 +24,14 @@ public class RobotGuy : MonoBehaviour
 		{
 			source.PlayOneShot(source.clip, source.volume);
 			animator.SetBool("Sputter", true); //play the stupid animation
-			Invoke(nameof(ResetSelf), source.clip.length + 0.15f);
+			Invoke(nameof(ResetSelf), animationTime + 0.15f);
 			isPlaying = true;
-			if(!progressedDialouge) {
-				npc.ProgressDialouge(); //show the electrocute dialouge!
+
+			lastDialougeIndex = npc.dialougeIndex;
+			if(!progressedDialouge) 
+			{
+				//the first one is electrocute.
+				npc.SetDialougeIndex(0);
 				progressedDialouge = true;
 			}
 		}
@@ -34,7 +39,14 @@ public class RobotGuy : MonoBehaviour
 	
 	private void ResetSelf()
 	{
+		source.Stop();
 		animator.SetBool("Sputter", false);
 		isPlaying = false;
+		Invoke(nameof(ResetDialouge), 3f); //reset the dialouge!
+	}
+
+	private void ResetDialouge() 
+	{
+		npc.SetDialougeIndex(lastDialougeIndex);
 	}
 }

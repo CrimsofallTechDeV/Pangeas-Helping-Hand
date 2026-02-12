@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CrimsofallTechnologies.XR.Gameplay
+namespace CrimsofallTechnologies.VR.Gameplay
 {
     public class RevolvingDoor : MonoBehaviour
     {

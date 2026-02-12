@@ -3,10 +3,13 @@
 public class WaterCan : MonoBehaviour
 {
 	public ParticleSystem waterParticle;
-	public float pourAngle = 45f;
+
+	//min, max
+	public Vector2 pourAngle = new Vector2(30f, 60f); //the angle range at which the water will pour (set in inspector)
 
 	private AudioSource source;
 	private bool Carrying;
+	private float angle;
 
 	private void Start()
 	{
@@ -23,8 +26,8 @@ public class WaterCan : MonoBehaviour
 			return;
 
 		// Compare can's "up" vector to world up
-		float angle = Vector3.Angle(transform.up, Vector3.up);
-		bool shouldPour = angle > pourAngle;
+		angle = Vector3.SignedAngle(transform.up, Vector3.up, transform.right);
+		bool shouldPour = angle >= pourAngle.x && angle <= pourAngle.y;
 
 		var emission = waterParticle.emission;
 		emission.enabled = shouldPour;

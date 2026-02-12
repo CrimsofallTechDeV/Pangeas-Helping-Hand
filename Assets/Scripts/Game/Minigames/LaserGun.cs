@@ -1,3 +1,4 @@
+using CrimsofallTechnologies.VR;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,9 @@ public class LaserGun : MonoBehaviour
 
     private void Update()
 	{
+		//make sure inventory is closed
+		if(GameManager.ui.playerInventoryGO.activeSelf)	return;
+
 		if (!Held) return;
 		//if(Time.time < time) return;
 

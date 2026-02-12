@@ -1,7 +1,7 @@
-using CrimsofallTechnologies.XR.Interaction;
+using CrimsofallTechnologies.VR.Interaction;
 using UnityEngine;
 
-namespace CrimsofallTechnologies.XR.Gameplay 
+namespace CrimsofallTechnologies.VR.Gameplay 
 {
     public class Blueberry : Interactable
     {

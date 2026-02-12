@@ -15,6 +15,8 @@ public class TriggerObjectEnabler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!enabled) return;
+
         if (other.tag == "Player")
         {
              for (int i = 0; i < objectsToEnable.Length; i++)
@@ -26,6 +28,8 @@ public class TriggerObjectEnabler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if(!enabled) return;
+
         if (other.tag == "Player")
         {
             for (int i = 0; i < objectsToEnable.Length; i++)

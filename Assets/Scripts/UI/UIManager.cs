@@ -1,95 +1,100 @@
+using CrimsofallTechnologies.VR.Gameplay;
+using CrimsofallTechnologies.VR.Inventory;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-[DefaultExecutionOrder(0)]
-public class UIManager : MonoBehaviour
+namespace CrimsofallTechnologies.VR.UI
 {
-    public Image hpFill;
-    public Text pointsText;
-    public GameObject playerInventoryGO;
-    public ItemVar testItem;
-
-    [Space]
-    public Slider soundSlider;
-    public Slider musicSlider;
-
-    public AudioMixer soundMixer, musicMixer;
-
-    public InputActionProperty openInventoryAction;
-
-    public PlayerHealth pHealth { get; set; }
-	
-	private bool IsMenu;
-    private float musicLevel, soundLevel;
-
-    public void SetMainMenuValue(bool value)
+    [DefaultExecutionOrder(0)]
+    public class UIManager : MonoBehaviour
     {
-        IsMenu = value;
-        gameObject.SetActive(!IsMenu);
-    }
+        public Image hpFill;
+        public Text pointsText;
+        public GameObject playerInventoryGO;
+        public ItemVar testItem;
 
-    private void Start()
-    {
-        if(GameManager.ui == null)
+        [Space]
+        public Slider soundSlider;
+        public Slider musicSlider;
+
+        public AudioMixer soundMixer, musicMixer;
+
+        public InputActionProperty openInventoryAction;
+
+        public PlayerHealth pHealth { get; set; }
+        
+        private bool IsMenu;
+        private float musicLevel, soundLevel;
+
+        public void SetMainMenuValue(bool value)
         {
-            DontDestroyOnLoad(gameObject);
-            GameManager.ui = this;
-
-            musicLevel = PlayerPrefs.GetFloat("musicVol", 0f);
-            soundLevel = PlayerPrefs.GetFloat("soundVol", 0f);
-            musicMixer.SetFloat("Vol", musicLevel);
-            soundMixer.SetFloat("Vol", soundLevel);
-
-            soundSlider.value = soundLevel;
-            musicSlider.value = musicLevel;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.playerInventory.AddItem(new(testItem));
+            IsMenu = value;
+            gameObject.SetActive(!IsMenu);
         }
 
-        if(openInventoryAction.action.WasPressedThisFrame())
+        private void Start()
         {
-            ToggleInventory();
+            if(GameManager.ui == null)
+            {
+                DontDestroyOnLoad(gameObject);
+                GameManager.ui = this;
+
+                musicLevel = PlayerPrefs.GetFloat("musicVol", 0f);
+                soundLevel = PlayerPrefs.GetFloat("soundVol", 0f);
+                musicMixer.SetFloat("Vol", musicLevel);
+                soundMixer.SetFloat("Vol", soundLevel);
+
+                soundSlider.value = soundLevel;
+                musicSlider.value = musicLevel;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-    }
 
-    public void UpdateUI()
-    {
-        hpFill.fillAmount = (float)pHealth.currentHealth / (float)pHealth.maxHealth;
-        pointsText.text = "Score: "+GameManager.Instance.points + "";
-    }
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                GameManager.playerInventory.AddItem(new(testItem));
+            }
 
-    public void ToggleInventory()
-    {
-        playerInventoryGO.SetActive(!playerInventoryGO.activeSelf);
-    }
+            if(openInventoryAction.action.WasPressedThisFrame())
+            {
+                ToggleInventory();
+            }
+        }
 
-    public void SetSoundValue(float value)
-    {
-        soundMixer.SetFloat("Vol", value);
-        soundLevel = value;
-    }
+        public void UpdateUI()
+        {
+            hpFill.fillAmount = (float)pHealth.currentHealth / (float)pHealth.maxHealth;
+            pointsText.text = "Score: "+GameManager.Instance.points + "";
+        }
 
-    public void SetMusicValue(float value)
-    {
-        musicMixer.SetFloat("Vol", value);
-        musicLevel = value;
-    }
+        public void ToggleInventory()
+        {
+            playerInventoryGO.SetActive(!playerInventoryGO.activeSelf);
+        }
 
-    public void OnSettingUiClosed()
-    {
-        PlayerPrefs.SetFloat("musicVol", musicLevel);
-        PlayerPrefs.SetFloat("soundVol", soundLevel);
+        public void SetSoundValue(float value)
+        {
+            soundMixer.SetFloat("Vol", value);
+            soundLevel = value;
+        }
+
+        public void SetMusicValue(float value)
+        {
+            musicMixer.SetFloat("Vol", value);
+            musicLevel = value;
+        }
+
+        public void OnSettingUiClosed()
+        {
+            PlayerPrefs.SetFloat("musicVol", musicLevel);
+            PlayerPrefs.SetFloat("soundVol", soundLevel);
+        }
     }
 }

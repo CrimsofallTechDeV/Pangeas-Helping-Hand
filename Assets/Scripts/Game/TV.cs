@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-namespace CrimsofallTechnologies.XR.Gameplay 
+namespace CrimsofallTechnologies.VR.Gameplay 
 {
     public class TV : MonoBehaviour
     {
@@ -91,6 +91,16 @@ namespace CrimsofallTechnologies.XR.Gameplay
             if(CurrentTape == "BROWN_TAPE") sceneName ="Toy Land";
             if(CurrentTape == "PURPLE_TAPE") sceneName ="Dark Wood";
             GameManager.Instance.LoadLevel(sceneName);
+        }
+
+        public void ShowCommercial()
+        {
+            if(hasTape) return;
+
+            //play movie:
+            player.clip = clips[clips.Length - 1];
+            player.Play(); //auto play the movie for the inserted tape!
+            blackScreen.SetActive(false);
         }
 
         public void OnInsertTape(GameObject tape)

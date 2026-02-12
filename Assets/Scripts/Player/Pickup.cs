@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Inventory 
 {
-    public ItemVar itemVar;
+    public class Pickup : MonoBehaviour
+    {
+        public ItemVar itemVar;
 
-    //when picked and player clicked on a inventory slot with free hand - add item there and remove!
-    
+        public bool canCarry = true; //can player carry this item? if false - only for quest purposes, cant be added to inventory
+    }
 }

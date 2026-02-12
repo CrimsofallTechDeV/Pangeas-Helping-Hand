@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
 
-namespace CrimsofallTechnologies.XR 
+namespace CrimsofallTechnologies.VR 
 {
     //this animates the hand into poses when pressing special buttons on the controller.
     public class AutoXRHandPoser : MonoBehaviour

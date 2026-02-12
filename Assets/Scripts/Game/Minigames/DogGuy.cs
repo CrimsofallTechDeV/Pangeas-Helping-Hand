@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DogGuy : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public void OnInit()
+    public class DogGuy : MonoBehaviour
     {
-        GetComponent<Animator>().SetBool("Sleeping", !GameManager.Instance.IsDay);
+        public void OnInit()
+        {
+            GetComponent<Animator>().SetBool("Sleeping", !GameManager.Instance.IsDay);
+        }
     }
 }

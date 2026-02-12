@@ -1,9 +1,9 @@
-﻿using CrimsofallTechnologies.XR;
+﻿using CrimsofallTechnologies.VR;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Jump;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 
-namespace CrimsofallTechnologies.XR.Gameplay 
+namespace CrimsofallTechnologies.VR.Gameplay 
 {
 	//player applies the jetpack and floats around, this disappears upon interaction and may activate some component on player that controls jetpack style movements!
     public class JetPackPickup : MonoBehaviour

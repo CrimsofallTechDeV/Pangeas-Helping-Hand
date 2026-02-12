@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.InputSystem;
+using CrimsofallTechnologies.VR;
 
 public class PictureCamera : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class PictureCamera : MonoBehaviour
 	
 	private void Update()
 	{
+		//make sure inventory is closed
+		if(GameManager.ui.playerInventoryGO.activeSelf)	return;
+
 		if(!held)
 			return;
 		

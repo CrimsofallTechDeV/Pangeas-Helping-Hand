@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CrimsofallTechnologies.VR;
+using UnityEngine;
 
 public class DarkWoodKey : MonoBehaviour
 {

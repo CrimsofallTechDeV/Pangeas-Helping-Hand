@@ -20,12 +20,10 @@ public class LoadingUI : MonoBehaviour
     #endregion
 
     public Animator animator;
-
-    private Canvas canvas;
+    public Canvas canvas;
 
     private void Start()
     {
-        canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
         DisableScreen();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -33,7 +31,7 @@ public class LoadingUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        canvas.worldCamera = Camera.main;
+        if(canvas != null) canvas.worldCamera = Camera.main;
     }
 
     public void EnableScreen()

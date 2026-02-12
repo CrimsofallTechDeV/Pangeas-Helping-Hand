@@ -50,7 +50,8 @@ MonoBehaviour:
   maxFramerate: 45
   levelLoadDelay: 2
   thingsDone: []
-  maxThingsToDo: 6
+  maxThingsToDo: 7
+  handTracker: {fileID: 0}
   OnGameStartedEvennt:
     m_PersistentCalls:
       m_Calls: []

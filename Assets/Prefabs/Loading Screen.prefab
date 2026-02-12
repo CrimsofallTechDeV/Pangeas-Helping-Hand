@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadingUI
   animator: {fileID: 5057655321322249631}
+  canvas: {fileID: 3409808247011178438}
 --- !u!1 &7966062891898700177
 GameObject:
   m_ObjectHideFlags: 0

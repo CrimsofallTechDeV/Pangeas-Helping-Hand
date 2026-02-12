@@ -1,8 +1,13 @@
+using CrimsofallTechnologies.VR.Inventory;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerData
+namespace CrimsofallTechnologies.VR.DataSaving
 {
-    public Item[] inventoryData;
-    public int points = 0;
+    [System.Serializable]
+    public class PlayerData
+    {
+        public Item[] inventoryData;
+        public int points = 0;
+        public bool elephantCreated;
+    }
 }

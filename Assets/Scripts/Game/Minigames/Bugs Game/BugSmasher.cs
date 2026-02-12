@@ -1,61 +1,64 @@
 using UnityEngine;
 
-public class BugSmasher : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay.BugGame
 {
-    public bool Active = false;
-    public float swingThreshold = 2.5f;   // speed needed to trigger swing
-
-    private Vector3 lastPosition;
-    private bool hasSwung = false;
-    public AudioClip splatSound, swingSound;
-    private AudioSource source;
-
-    private void Awake()
+    public class BugSmasher : MonoBehaviour
     {
-        source = GetComponent<AudioSource>();
-    }
+        public bool Active = false;
+        public float swingThreshold = 2.5f;   // speed needed to trigger swing
 
-    private void Update()
-    {
-        if(!Active)
-            return;
+        private Vector3 lastPosition;
+        private bool hasSwung = false;
+        public AudioClip splatSound, swingSound;
+        private AudioSource source;
 
-        //when player swings play a swing sound (calculate swing from position)
-        float distance = Vector3.Distance(transform.position, lastPosition);
-        float speed = distance / Time.deltaTime;
-
-        // Detect swing
-        if (speed > swingThreshold)
+        private void Awake()
         {
-            if (!hasSwung)
+            source = GetComponent<AudioSource>();
+        }
+
+        private void Update()
+        {
+            if(!Active)
+                return;
+
+            //when player swings play a swing sound (calculate swing from position)
+            float distance = Vector3.Distance(transform.position, lastPosition);
+            float speed = distance / Time.deltaTime;
+
+            // Detect swing
+            if (speed > swingThreshold)
             {
-                if(!source.isPlaying) source.PlayOneShot(swingSound, 0.35f);
-                hasSwung = true;
+                if (!hasSwung)
+                {
+                    if(!source.isPlaying) source.PlayOneShot(swingSound, 0.35f);
+                    hasSwung = true;
+                }
+            }
+            else
+            {
+                hasSwung = false;
+            }
+
+            // Store position for next frame
+            lastPosition = transform.position;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Bug") && Active)
+            {
+                BugAI ai = other.GetComponent<BugAI>();
+                ai.animator.SetBool("Splat", true);
+                source.PlayOneShot(splatSound);
+                ai.Stop();
+                Destroy(other.gameObject, 2f);
             }
         }
-        else
+
+        public void ToggleActive(bool state)
         {
-            hasSwung = false;
+            Active = state;
         }
-
-        // Store position for next frame
-        lastPosition = transform.position;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bug") && Active)
-        {
-            BugAI ai = other.GetComponent<BugAI>();
-            ai.animator.SetBool("Splat", true);
-            source.PlayOneShot(splatSound);
-            ai.Stop();
-            Destroy(other.gameObject, 2f);
-        }
-    }
-
-    public void ToggleActive(bool state)
-    {
-        Active = state;
     }
 }

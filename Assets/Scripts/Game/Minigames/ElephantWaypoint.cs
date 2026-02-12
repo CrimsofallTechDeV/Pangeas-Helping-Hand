@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class ElephantWaypoint : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public string Type;
-    public Transform teleportPoint;
-
-    private void OnTriggerEnter(Collider other)
+    public class ElephantWaypoint : MonoBehaviour
     {
-        Elephant elephant = other.GetComponentInChildren<Elephant>();
-        if(elephant != null)
-        {
-            if(Type == "Teleport")
-            {
-                elephant.agent.Warp(teleportPoint.position);
-            }
+        public string Type;
+        public Transform teleportPoint;
 
-            if(Type == "End")
+        private void OnTriggerEnter(Collider other)
+        {
+            Elephant elephant = other.GetComponentInChildren<Elephant>();
+            if(elephant != null)
             {
-                //trigger special jump and move forward animations!
-                elephant.End();
+                if(Type == "Teleport")
+                {
+                    elephant.agent.Warp(teleportPoint.position);
+                }
+
+                if(Type == "End")
+                {
+                    //trigger special jump and move forward animations!
+                    elephant.End();
+                }
             }
         }
     }

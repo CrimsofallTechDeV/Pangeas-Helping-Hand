@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CrimsofallTechnologies.XR
+namespace CrimsofallTechnologies.VR
 {
     public class RotationFollower : MonoBehaviour
     {

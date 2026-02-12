@@ -3,84 +3,87 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace CrimsofallTechnologies.VR.UI
 {
-    public GameObject mainmenuUI, settingsUI, creditsUI;
-    public Slider musicSlider, soundSlider;
-
-    public AudioMixer soundMixer, musicMixer;
-
-    public AudioClip musicClip;
-	public Text versionText;
-
-    private float musicLevel, soundLevel;
-
-    private void Start()
+    public class MainMenu : MonoBehaviour
     {
-        //load and apply settings from disk!
-        musicLevel = PlayerPrefs.GetFloat("musicVol", 0f);
-        soundLevel = PlayerPrefs.GetFloat("soundVol", 0f);
-        musicMixer.SetFloat("Vol", musicLevel);
-        soundMixer.SetFloat("Vol", soundLevel);
+        public GameObject mainmenuUI, settingsUI, creditsUI;
+        public Slider musicSlider, soundSlider;
 
-        //update UI too
-        musicSlider.value = musicLevel;
-        soundSlider.value = soundLevel;
-		
-		versionText.text = "v."+Application.version;
-        
-        GameManager.Instance.bgmPlayer.PlayMusic(musicClip);
-    }
+        public AudioMixer soundMixer, musicMixer;
 
-    public void Play()
-    {
-        SceneManager.LoadScene("Level1");
-    }
+        public AudioClip musicClip;
+        public Text versionText;
 
-    public void Exit()
-    {
-        Application.Quit();
-    }
+        private float musicLevel, soundLevel;
 
-    public void Settings()
-    {
-        mainmenuUI.SetActive(false);
-        settingsUI.SetActive(true);
-    }
+        private void Start()
+        {
+            //load and apply settings from disk!
+            musicLevel = PlayerPrefs.GetFloat("musicVol", 0f);
+            soundLevel = PlayerPrefs.GetFloat("soundVol", 0f);
+            musicMixer.SetFloat("Vol", musicLevel);
+            soundMixer.SetFloat("Vol", soundLevel);
 
-    public void Credits()
-    {
-        mainmenuUI.SetActive(false);
-        creditsUI.SetActive(true);
-    }
+            //update UI too
+            musicSlider.value = musicLevel;
+            soundSlider.value = soundLevel;
+            
+            versionText.text = "v."+Application.version;
+            
+            GameManager.Instance.bgmPlayer.PlayMusic(musicClip);
+        }
 
-    public void Back()
-    {
-        settingsUI.SetActive(false);
-        creditsUI.SetActive(false);
-        mainmenuUI.SetActive(true);
+        public void Play()
+        {
+            SceneManager.LoadScene("Level1");
+        }
 
-        //save settings to disk for loading later!
-        PlayerPrefs.SetFloat("musicVol", musicLevel);
-        PlayerPrefs.SetFloat("soundVol", soundLevel);
-    }
+        public void Exit()
+        {
+            Application.Quit();
+        }
 
-    public void SetMusic(float value)
-    {
-        musicMixer.SetFloat("Vol", value);
-        musicLevel = value;
-    }
+        public void Settings()
+        {
+            mainmenuUI.SetActive(false);
+            settingsUI.SetActive(true);
+        }
 
-    public void SetSound(float value)
-    {
-        soundMixer.SetFloat("Vol", value);
-        soundLevel = value;
-    }
+        public void Credits()
+        {
+            mainmenuUI.SetActive(false);
+            creditsUI.SetActive(true);
+        }
 
-    private void OnApplicationQuit()
-    {
-        //save settings to disk for loading later!
-        PlayerPrefs.SetFloat("musicVol", musicLevel);
-        PlayerPrefs.SetFloat("soundVol", soundLevel);
+        public void Back()
+        {
+            settingsUI.SetActive(false);
+            creditsUI.SetActive(false);
+            mainmenuUI.SetActive(true);
+
+            //save settings to disk for loading later!
+            PlayerPrefs.SetFloat("musicVol", musicLevel);
+            PlayerPrefs.SetFloat("soundVol", soundLevel);
+        }
+
+        public void SetMusic(float value)
+        {
+            musicMixer.SetFloat("Vol", value);
+            musicLevel = value;
+        }
+
+        public void SetSound(float value)
+        {
+            soundMixer.SetFloat("Vol", value);
+            soundLevel = value;
+        }
+
+        private void OnApplicationQuit()
+        {
+            //save settings to disk for loading later!
+            PlayerPrefs.SetFloat("musicVol", musicLevel);
+            PlayerPrefs.SetFloat("soundVol", soundLevel);
+        }
     }
 }

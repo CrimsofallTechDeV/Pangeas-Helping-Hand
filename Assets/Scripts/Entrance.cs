@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Hands.OpenXR;
 
-namespace CrimsofallTechnologies.XR.Interaction {
+namespace CrimsofallTechnologies.VR.Interaction {
     public class Entrance : Interactable
     {
         public InputActionProperty enterInputAction;

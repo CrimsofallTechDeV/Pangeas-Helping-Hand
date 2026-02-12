@@ -1,9 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "")]
-public class ItemVar : ScriptableObject
+namespace CrimsofallTechnologies.VR.Inventory 
 {
-    public string itemName;
-    public Sprite Icon;
-    public GameObject pickupObject;
+    [CreateAssetMenu(fileName = "New Item", menuName = "")]
+    public class ItemVar : ScriptableObject
+    {
+        public string itemName;
+        public Sprite Icon;
+        public GameObject pickupObject;
+    }
 }

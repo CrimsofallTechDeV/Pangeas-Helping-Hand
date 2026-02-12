@@ -15,15 +15,16 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: -882
-    y: 32
+    x: 112
+    y: 130
     width: 190
     height: 135
-  IsDragging: 0
-  IsSelected: 0
+  IsDragging: 1
+  IsSelected: 1
   _sentence:
     CharacterName: Tyler
-    Text: hiya, care to shoot?
+    Text: Ah, raring for a challenge are you? if you get 3000 points I'll give ya
+      a prize!
     CharacterSprite: {fileID: 0}
   ParentNodes: []
   ChildNode: {fileID: -7459507112067194694}
@@ -46,8 +47,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 330
-    y: 106
+    x: 1325
+    y: 204
     width: 190
     height: 155
   IsDragging: 0
@@ -78,8 +79,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: -568
-    y: -7
+    x: 427
+    y: 91
     width: 190
     height: 135
   IsDragging: 1
@@ -108,8 +109,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: -259
-    y: 3
+    x: 736
+    y: 101
     width: 190
     height: 155
   IsDragging: 0
@@ -167,8 +168,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 19
-    y: 82
+    x: 1014
+    y: 180
     width: 190
     height: 115
   IsDragging: 0
@@ -195,12 +196,12 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 326
-    y: 326
+    x: 1321
+    y: 424
     width: 190
     height: 155
   IsDragging: 1
-  IsSelected: 1
+  IsSelected: 0
   _sentence:
     CharacterName: ending
     Text: 
@@ -227,8 +228,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 56
-    y: 321
+    x: 1051
+    y: 419
     width: 190
     height: 115
   IsDragging: 0
@@ -255,8 +256,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: -282
-    y: 231
+    x: 713
+    y: 329
     width: 190
     height: 135
   IsDragging: 0

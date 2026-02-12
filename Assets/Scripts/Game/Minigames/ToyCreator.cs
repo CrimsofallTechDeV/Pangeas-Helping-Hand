@@ -1,21 +1,32 @@
+using System.Collections;
 using UnityEngine;
 
-namespace CrimsofallTechnologies.XR.Gameplay 
+namespace CrimsofallTechnologies.VR.Gameplay 
 {
     public class ToyCreator : MonoBehaviour
     {
         public int toysCount = 3;
         public GameObject elephant;
         public AudioClip createSound;
+        public GameObject[] toyAssets;
 
         private AudioSource source;
         private int _toyCount = 0;
-		
-		private void Start() {
-			
+
+         private IEnumerator Start()
+        {
 			elephant.SetActive(false);
             source = GetComponent<AudioSource>();
-		}
+
+            yield return new WaitForSeconds(4f);
+
+            bool created = GameManager.Instance.thingsDone.Contains("ToyCreated");
+            for (int i = 0; i < toyAssets.Length; i++)
+            {
+                toyAssets[i].SetActive(created);
+            }
+            elephant.SetActive(created);
+        }
 
         //remove all old toys and create a new one!
         private void OnTriggerEnter(Collider other)
@@ -40,6 +51,11 @@ namespace CrimsofallTechnologies.XR.Gameplay
 
             if(!GameManager.Instance.thingsDone.Contains("ToyCreated"))
                 GameManager.Instance.thingsDone.Add("ToyCreated");
+        }
+
+        public void StopSound()
+        {
+            source.Stop();
         }
     }
 }

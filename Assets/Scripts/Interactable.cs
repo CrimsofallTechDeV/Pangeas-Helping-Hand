@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CrimsofallTechnologies.XR.Interaction
+namespace CrimsofallTechnologies.VR.Interaction
 {
     public class Interactable : MonoBehaviour
     {

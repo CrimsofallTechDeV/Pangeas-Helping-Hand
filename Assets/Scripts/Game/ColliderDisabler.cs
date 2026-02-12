@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class ColliderDisabler : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Game
 {
-	public Collider col; //disabled on trigger exit, enabled on trigger enter
-	
-	private void OnTriggerEnter(Collider other) {
-		if(other.tag == "Player")
-		{
-			col.enabled = true;
+	public class ColliderDisabler : MonoBehaviour
+	{
+		public Collider col; //disabled on trigger exit, enabled on trigger enter
+		
+		private void OnTriggerEnter(Collider other) {
+			if(other.tag == "Player")
+			{
+				col.enabled = true;
+			}
 		}
-	}
-	
-	private void OnTriggerExit(Collider other) {
-		if(other.tag == "Player")
-		{
-			col.enabled = false;
+		
+		private void OnTriggerExit(Collider other) {
+			if(other.tag == "Player")
+			{
+				col.enabled = false;
+			}
 		}
 	}
 }

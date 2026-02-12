@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class TriggerSound : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public string Tag;
-    public AudioSource source;
-
-    private void OnTriggerEnter(Collider col)
+    public class TriggerSound : MonoBehaviour
     {
-        if(col.tag == Tag)
+        public string Tag;
+        public AudioSource source;
+
+        private void OnTriggerEnter(Collider col)
         {
-            source.PlayOneShot(source.clip);
+            if(col.tag == Tag)
+            {
+                source.PlayOneShot(source.clip);
+            }
         }
     }
 }

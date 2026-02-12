@@ -1,7 +1,7 @@
-using CrimsofallTechnologies.XR.Interaction;
+using CrimsofallTechnologies.VR.Interaction;
 using UnityEngine;
 
-namespace  CrimsofallTechnologies.XR.Gameplay
+namespace  CrimsofallTechnologies.VR.Gameplay
 {
     public class TVButton : MonoBehaviour
     {
@@ -52,7 +52,7 @@ namespace  CrimsofallTechnologies.XR.Gameplay
 
             if(YellowButton) //play tape video
             {
-                Debug.Log("For future!");
+                tv.ShowCommercial();
             }
         }
     }

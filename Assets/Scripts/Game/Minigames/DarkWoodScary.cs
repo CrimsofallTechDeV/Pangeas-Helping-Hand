@@ -1,29 +1,51 @@
+using CrimsofallTechnologies.VR.Interaction;
+using CrimsofallTechnologies.VR.Music;
+using CrimsofallTechnologies.VR.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class DarkWoodScary : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay 
 {
-    public Volume ppVolume;
-
-    public VolumeProfile normalProfile;
-    public VolumeProfile scaryProfile;
-
-    public GameObject[] characters;
-
-    private void Start()
+    public class DarkWoodScary : MonoBehaviour
     {
-        ppVolume.profile = normalProfile;
-    }
+        public Volume ppVolume;
+        public AudioClip scaryClip;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
+        public CustomSceneManager sceneM;
+        public MusicTrigger shootingTrigger;
+        public ShootingGame shootingGame;
+        public Entrance outEntr, inEntr;
+
+        public VolumeProfile normalProfile;
+        public VolumeProfile scaryProfile;
+
+        public GameObject[] characters;
+
+        private void Start()
         {
-            ppVolume.profile = scaryProfile;
+            ppVolume.profile = normalProfile;
+        }
 
-            for (int i = 0; i < characters.Length; i++)
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == "Player")
             {
-                characters[i].SetActive(false);
+                ppVolume.profile = scaryProfile;
+
+                for (int i = 0; i < characters.Length; i++)
+                {
+                    characters[i].SetActive(false);
+                }
+
+                //change music all over
+                shootingGame.houseClip = scaryClip;
+                sceneM.musicClipDay = scaryClip;
+                sceneM.musicClipNight = scaryClip;
+                shootingTrigger.outMusicDay = scaryClip;
+                shootingTrigger.outMusicNight = scaryClip;
+                outEntr.musicClip = scaryClip;
+                inEntr.musicClip = scaryClip;
+                GameManager.Instance.bgmPlayer.PlayMusic(scaryClip);
             }
         }
     }

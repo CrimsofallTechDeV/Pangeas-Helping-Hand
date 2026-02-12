@@ -1590,7 +1590,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 655ab66b9463e154aa439bd71b003877, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 42f2bca2fa9cf474d9da99ad77208a73, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: 
@@ -1998,6 +1998,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 4510809415c490d41b3902b54cac9b3e, type: 3}
   - {fileID: 32900000, guid: 84e95ee6f2139a944950dddb5b3b3480, type: 3}
   - {fileID: 32900000, guid: ea5b96bbdb7f8bf40be5a62cbad18895, type: 3}
+  - {fileID: 32900000, guid: fa8181efff5ea444285c5d1c1099f593, type: 3}
   Tapes:
   - {fileID: 515988559663456475}
   - {fileID: 2831840020121849858}
@@ -2026,8 +2027,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0090424875, y: 0.01459841, z: 0.014140228}
-  m_Center: {x: -0.01938084, y: -0.006797138, z: -0.011159034}
+  m_Size: {x: 0.009042489, y: 0.01459841, z: 0.025245314}
+  m_Center: {x: -0.01938084, y: -0.006797138, z: -0.0056064907}
 --- !u!95 &393360547
 Animator:
   serializedVersion: 7
@@ -2680,6 +2681,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502232438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: XRI Left Interaction/Activate
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_ActionId: 0c0991c5-d329-4afc-8892-1076b440477c
 --- !u!65 &541686394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4374,7 +4389,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBehaviour: {fileID: 188165623}
   nodeGraphs:
-  - {fileID: 11400000, guid: 8d7489b9ba6a7464ab2e8998f0461e28, type: 2}
+  - {fileID: 11400000, guid: de1b5c645db4e6b4e9ac277d68529c02, type: 2}
+  startingDialougeIndex: 0
   setTalkAnimationWhileTalking: 1
   DisableTalk: 0
   autoProgressDiagOnTalk: 0
@@ -6102,6 +6118,115 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6324704824182569051, guid: ab120906bcac6544e98e6709363af57c, type: 3}
+--- !u!1 &1369280855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369280858}
+  - component: {fileID: 1369280857}
+  - component: {fileID: 1369280856}
+  m_Layer: 0
+  m_Name: Help Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!102 &1369280856
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369280855}
+  m_Text: 'Open inventory with Y and grab an object
+
+    point with hand to add item
+    to inventory.
+
+'
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 42
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &1369280857
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369280855}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1369280858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369280855}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7366322, z: -0, w: -0.6762936}
+  m_LocalPosition: {x: 9.18, y: -8.76, z: 14.83}
+  m_LocalScale: {x: 0.027955675, y: 0.027955675, z: 0.027955675}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 265.109, z: 0}
 --- !u!1 &1378586601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8551,6 +8676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerObjectEnabler
   objectsToEnable:
   - {fileID: 1537510203}
+  - {fileID: 1369280855}
 --- !u!65 &2068841760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9005,6 +9131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player XR
       objectReference: {fileID: 0}
+    - target: {fileID: 4324585317139525663, guid: b0c75dbf75a71a4498b528445234ed04, type: 3}
+      propertyPath: interactAction.m_Reference
+      value: 
+      objectReference: {fileID: 502232438}
     - target: {fileID: 4973256985370483898, guid: b0c75dbf75a71a4498b528445234ed04, type: 3}
       propertyPath: sprintKey.m_Reference
       value: 
@@ -10589,6 +10719,7 @@ SceneRoots:
   - {fileID: 175562174}
   - {fileID: 1049556982}
   - {fileID: 1537510206}
+  - {fileID: 1369280858}
   - {fileID: 929652801}
   - {fileID: 188165626}
   - {fileID: 2033789577}

@@ -1,19 +1,23 @@
 using cherrydev;
 using UnityEngine;
 
-//when player tries to get out while minigame is running say something
-public class DarkWoodShooter : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public NPC darkwoodShooterGuy;
-    public DialogNodeGraph dialog;
-    public ShootingGame shootingGame;
-
-    private void OnTriggerEnter(Collider other)
+    //this is for the dark wood shooter minigame, when the player tries to get out while the minigame is active, the shooting guy will say something
+    //when player tries to get out while minigame is running say something
+    public class DarkWoodShooter : MonoBehaviour
     {
-        if(other.tag == "Player" && shootingGame.Active)
+        public NPC darkwoodShooterGuy;
+        public DialogNodeGraph dialog;
+        public ShootingGame shootingGame;
+
+        private void OnTriggerEnter(Collider other)
         {
-            //make the shooting guy say something lol
-            darkwoodShooterGuy.dialogBehaviour.StartDialog(dialog);
+            if(other.tag == "Player" && shootingGame.Active)
+            {
+                //make the shooting guy say something lol
+                darkwoodShooterGuy.dialogBehaviour.StartDialog(dialog);
+            }
         }
     }
 }

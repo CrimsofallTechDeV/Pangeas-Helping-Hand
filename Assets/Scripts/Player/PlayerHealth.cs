@@ -1,36 +1,39 @@
 using UnityEngine;
 
-[DefaultExecutionOrder(2)]
-public class PlayerHealth : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public int maxHealth = 100;
-
-    public int currentHealth { get; private set; }
-    public bool IsDead { get; private set; }
-
-    private void Start()
+    [DefaultExecutionOrder(2)]
+    public class PlayerHealth : MonoBehaviour
     {
-        IsDead = false;
-        currentHealth = maxHealth;
-        GameManager.ui.pHealth = this;
-        GameManager.ui.UpdateUI();
-    }
+        public int maxHealth = 100;
 
-    public virtual void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
+        public int currentHealth { get; private set; }
+        public bool IsDead { get; private set; }
 
-        if(currentHealth <= 0)
+        private void Start()
         {
-            currentHealth = 0;
-            Die();
+            IsDead = false;
+            currentHealth = maxHealth;
+            GameManager.ui.pHealth = this;
+            GameManager.ui.UpdateUI();
         }
 
-        GameManager.ui.UpdateUI();
-    }
+        public virtual void TakeDamage(int damage)
+        {
+            currentHealth -= damage;
 
-    public virtual void Die()
-    {
-        IsDead = true;
+            if(currentHealth <= 0)
+            {
+                currentHealth = 0;
+                Die();
+            }
+
+            GameManager.ui.UpdateUI();
+        }
+
+        public virtual void Die()
+        {
+            IsDead = true;
+        }
     }
 }

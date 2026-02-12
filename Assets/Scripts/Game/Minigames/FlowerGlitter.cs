@@ -1,40 +1,43 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-public class FlowerGlitter : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-	public ParticleSystem[] glitterParticle;
-	public NPC npc; //the npc to progress dialouge for after player watered this flowers
-	
-	private AudioSource source;
-	private bool progressedDialouge = false;
-
-	private void Start()
+	public class FlowerGlitter : MonoBehaviour
 	{
-		source = GetComponent<AudioSource>();
-	}
-	
-	private void OnParticleCollision(GameObject other) 
-	{
-		if(other.tag == "Water") {
-			Glitter();
-		}
-	}
-	
-	public void Glitter()
-	{
-		for (int i = 0; i < glitterParticle.Length; i++) {
-			if(!glitterParticle[i].isPlaying) 
-				glitterParticle[i].Play();
-		}
+		public ParticleSystem[] glitterParticle;
+		public NPC npc; //the npc to progress dialouge for after player watered this flowers
+		
+		private AudioSource source;
+		private bool progressedDialouge = false;
 
-		if(npc!=null && !progressedDialouge) {
-			progressedDialouge = true;
-			npc.ProgressDialouge();
+		private void Start()
+		{
+			source = GetComponent<AudioSource>();
 		}
-		source.PlayOneShot(source.clip, source.volume);
+		
+		private void OnParticleCollision(GameObject other) 
+		{
+			if(other.tag == "Water") {
+				Glitter();
+			}
+		}
+		
+		public void Glitter()
+		{
+			for (int i = 0; i < glitterParticle.Length; i++) {
+				if(!glitterParticle[i].isPlaying) 
+					glitterParticle[i].Play();
+			}
 
-		if(!GameManager.Instance.thingsDone.Contains("WateredFlowers"))
-			GameManager.Instance.thingsDone.Add("WateredFlowers"); //add to things done so that it can be checked in other scripts that care about this! (like the journal)
+			if(npc!=null && !progressedDialouge) {
+				progressedDialouge = true;
+				npc.ProgressDialouge();
+			}
+			source.PlayOneShot(source.clip, source.volume);
+
+			if(!GameManager.Instance.thingsDone.Contains("WateredFlowers"))
+				GameManager.Instance.thingsDone.Add("WateredFlowers"); //add to things done so that it can be checked in other scripts that care about this! (like the journal)
+		}
 	}
 }

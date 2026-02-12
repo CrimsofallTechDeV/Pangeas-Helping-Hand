@@ -1,36 +1,40 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EatableFruit : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay.BugGame
 {
-    public FruitBugs fb;
-    private bool alreadyPicked;
-
-    private void OnTriggerEnter(Collider other)
+  public class EatableFruit : MonoBehaviour
     {
-        if (other.CompareTag("Bug"))
-        {
-            //make sure this is the fruit this bug wants to eat!
-            BugAI ai = other.GetComponent<BugAI>();
-            if(ai.target == transform) 
-            {
-                //remove the fruit as well as the bug!
-                fb.RemoveFruit(gameObject);
-                fb.RemoveBug(other.gameObject);
+        public FruitBugs fb;
+        private bool alreadyPicked;
 
-                Destroy(other.gameObject, 2f);
-                //Destroy(gameObject);
-                gameObject.SetActive(false);
-                ai.animator.SetBool("Splat", true);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Bug"))
+            {
+                //make sure this is the fruit this bug wants to eat!
+                BugAI ai = other.GetComponent<BugAI>();
+                if(ai.target == transform) 
+                {
+                    //remove the fruit as well as the bug!
+                    fb.RemoveFruit(gameObject);
+                    fb.RemoveBug(other.gameObject);
+
+                    Destroy(other.gameObject, 2f);
+                    //Destroy(gameObject);
+                    gameObject.SetActive(false);
+                    ai.animator.SetBool("Splat", true);
+                }
             }
         }
-    }
 
-    public void Picked()
-    {
-        if(!alreadyPicked) {
-            fb.PickedFruit(transform);
-            alreadyPicked = true;
+        public void Picked()
+        {
+            if(!alreadyPicked) {
+                fb.PickedFruit(transform);
+                alreadyPicked = true;
+            }
         }
-    }
+    }  
 }
+

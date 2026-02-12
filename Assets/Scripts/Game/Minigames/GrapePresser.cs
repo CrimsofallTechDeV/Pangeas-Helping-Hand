@@ -1,56 +1,59 @@
 using UnityEngine;
 
-public class GrapePresser : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Gameplay
 {
-    public float yRemoveOffset = 0.25f;
-    public float maxY;
-    public Transform jarSpawnArea;
-    public GameObject jarPrefab;
-
-    private Vector3 originalPos;
-    private bool inside;
-	private AudioSource source;
-
-    private void Start()
+    public class GrapePresser : MonoBehaviour
     {
-        originalPos = transform.position;
-		source = GetComponent<AudioSource>();
-    }
+        public float yRemoveOffset = 0.25f;
+        public float maxY;
+        public Transform jarSpawnArea;
+        public GameObject jarPrefab;
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (collider.tag == "Grape")
+        private Vector3 originalPos;
+        private bool inside;
+        private AudioSource source;
+
+        private void Start()
         {
-            Destroy(collider.gameObject);
-            float y = transform.position.y + yRemoveOffset;
-            if (y >= maxY) y = maxY;
-            transform.position = new Vector3(originalPos.x, y, originalPos.z);
+            originalPos = transform.position;
+            source = GetComponent<AudioSource>();
         }
-        
-        if (inside) return;
 
-        if (collider.tag == "Player")
+        public void OnTriggerEnter(Collider collider)
         {
-            //player jumps on this and presses it!
-            transform.position = new Vector3(originalPos.x, transform.position.y - yRemoveOffset, originalPos.z);
-            Instantiate(jarPrefab, jarSpawnArea.position, Quaternion.identity);
-            inside = true;
-			
-			//play a sound
-			source.PlayOneShot(source.clip, source.volume);
-        }
-    }
+            if (collider.tag == "Grape")
+            {
+                Destroy(collider.gameObject);
+                float y = transform.position.y + yRemoveOffset;
+                if (y >= maxY) y = maxY;
+                transform.position = new Vector3(originalPos.x, y, originalPos.z);
+            }
+            
+            if (inside) return;
 
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.tag == "Player")
+            if (collider.tag == "Player")
+            {
+                //player jumps on this and presses it!
+                transform.position = new Vector3(originalPos.x, transform.position.y - yRemoveOffset, originalPos.z);
+                Instantiate(jarPrefab, jarSpawnArea.position, Quaternion.identity);
+                inside = true;
+                
+                //play a sound
+                source.PlayOneShot(source.clip, source.volume);
+            }
+        }
+
+        private void OnTriggerExit(Collider collider)
         {
-            inside = false;
+            if (collider.tag == "Player")
+            {
+                inside = false;
+            }
         }
-    }
 
-    public void Reset()
-    {
-        transform.position = originalPos;
+        public void Reset()
+        {
+            transform.position = originalPos;
+        }
     }
 }

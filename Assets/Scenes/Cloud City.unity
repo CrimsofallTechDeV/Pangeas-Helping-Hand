@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.85
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: e022ba365a5798746abeaea55a116aeb, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 61701ba1a9e53ad40aa745d6fa0ee220, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 410087040}
-  skyLight: {fileID: 0}
-  skyDark: {fileID: 0}
+  skyLight: {fileID: 2100000, guid: 61701ba1a9e53ad40aa745d6fa0ee220, type: 2}
+  skyDark: {fileID: 2100000, guid: 8d1d5a8cf967186478c28c3dd10f21b9, type: 2}
   dayObjects: []
   nightObjects: []
   musicClipDay: {fileID: 8300000, guid: 2bb0be4ae00ec3d4e8e5c048f3f7b6e7, type: 3}
@@ -1349,6 +1349,7 @@ MonoBehaviour:
   dialogBehaviour: {fileID: 239527576}
   nodeGraphs:
   - {fileID: 11400000, guid: 2227eb3c723a18c4680f312515750969, type: 2}
+  startingDialougeIndex: 0
   setTalkAnimationWhileTalking: 1
   DisableTalk: 0
   autoProgressDiagOnTalk: 0
@@ -1759,6 +1760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player XR
       objectReference: {fileID: 0}
+    - target: {fileID: 4324585317139525663, guid: b0c75dbf75a71a4498b528445234ed04, type: 3}
+      propertyPath: interactAction.m_Reference
+      value: 
+      objectReference: {fileID: 1981841433}
     - target: {fileID: 4973256985370483898, guid: b0c75dbf75a71a4498b528445234ed04, type: 3}
       propertyPath: sprintKey.m_Reference
       value: 
@@ -1857,6 +1862,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981841433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: XRI Left Interaction/Activate
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_ActionId: 0c0991c5-d329-4afc-8892-1076b440477c
 --- !u!114 &1990954738
 MonoBehaviour:
   m_ObjectHideFlags: 0

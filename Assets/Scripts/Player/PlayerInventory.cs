@@ -1,170 +1,185 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using CrimsofallTechnologies.VR.DataSaving;
 
-[DefaultExecutionOrder(0)]
-public class PlayerInventory : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Inventory
 {
-    public GameObject[] slotsPages;
-    public Transform cameraT;
-
-    public List<Sprite> itemIcons = new();
-    public List<GameObject> itemPrefabs = new();
-    public Button nextButton, prevButton;
-    public int maxPages;
-
-    private int currentPage = 0;
-    public Slot[] slots;
-
-    private void Start()
+    [DefaultExecutionOrder(0)]
+    public class PlayerInventory : MonoBehaviour
     {
-        GameManager.playerInventory = this;
+        public GameObject[] slotsPages;
+        public Transform cameraT;
+        public InputActionProperty interactAction; //when inventory is open and this is pressed any picked item is added to inventory (set in inspector)
 
-        //start at page 0
-        currentPage = 0;
+        public List<Sprite> itemIcons = new();
+        public List<GameObject> itemPrefabs = new();
+        public Button nextButton, prevButton;
+        public int maxPages;
 
-        for (int i = 0; i < slots.Length; i++)
+        private int currentPage = 0;
+        public Slot[] slots;
+
+        private void Start()
         {
-            slots[i].Init(this, i);
-        }
+            GameManager.playerInventory = this;
 
-        prevButton.interactable = false;
-        nextButton.interactable = true;
+            //start at page 0
+            currentPage = 0;
 
-        slotsPages[0].SetActive(true);
-        slotsPages[1].SetActive(false);
-        slotsPages[2].SetActive(false);
-    }
-
-    public Item[] GetAllItems()
-    {
-        Item[] items = new Item[slots.Length];
-        for (int i = 0; i < slots.Length; i++)
-        {
-            items[i] = slots[i].myItem;
-        }
-        return items;
-    }
-
-    public bool AddItem(Item item)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (!slots[i].myItem.InstanceActive)
+            for (int i = 0; i < slots.Length; i++)
             {
-                slots[i].Fill(item);
-                return true;
+                slots[i].Init(this, i);
+            }
+
+            prevButton.interactable = false;
+            nextButton.interactable = true;
+
+            slotsPages[0].SetActive(true);
+            slotsPages[1].SetActive(false);
+            slotsPages[2].SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (interactAction.action.WasPressedThisFrame() && GameManager.ui.playerInventoryGO.activeSelf)
+            {
+                TryAddPickedItem();
             }
         }
 
-        Debug.Log("Inventory Full!");
-        return false;
-    }
-
-    //will not replace already exsisting items
-    public bool AddItem(Item item, int index)
-    {
-        if (!slots[index].myItem.InstanceActive)
+        public Item[] GetAllItems()
         {
-            slots[index].Fill(item);
-            return true;
+            Item[] items = new Item[slots.Length];
+            for (int i = 0; i < slots.Length; i++)
+            {
+                items[i] = slots[i].myItem;
+            }
+            return items;
         }
 
-        return false;
-    }
-
-    public Item RemoveItem(int index)
-    {
-        if (slots[index].myItem.InstanceActive)
+        public bool AddItem(Item item)
         {
-            Item i = slots[index].myItem;
-            slots[index].Clear();
-            return i;
+            //add to closest empty slot
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (!slots[i].myItem.InstanceActive)
+                {
+                    slots[i].Fill(item);
+                    return true;
+                }
+            }
+
+            Debug.Log("Inventory Full!");
+            return false;
         }
 
-        return null;
-    }
-
-    public void TryUseItem(int index)
-    {
-        if (!slots[index].myItem.InstanceActive)
-            return;
-
-        Debug.Log("Using item: " + slots[index].myItem.itemName);
-
-        //spawn the item near player to pick and use!
-        Vector3 playerForward = cameraT.forward;
-        Instantiate(itemPrefabs[slots[index].myItem.prefabIndex], cameraT.position + playerForward * 2f, Quaternion.LookRotation(playerForward));
-
-        RemoveItem(index);
-    }
-
-    public void TryAddPickedItem(int index)
-    {
-        //get the object in either left or right hand!
-        PlayerHandObjectTracker handTracker = GameManager.playerObject.GetComponent<PlayerHandObjectTracker>();
-        GameObject left = handTracker.GetLeftHandObject(), right = handTracker.GetRightHandObject();
-
-        if (left != null)
+        //will not replace already exsisting items
+        public bool AddItem(Item item, int index)
         {
-            Pickup pick = left.GetComponent<Pickup>();
-            if (pick != null && AddItem(new(pick.itemVar), index))
-                Destroy(left);
+            if (!slots[index].myItem.InstanceActive)
+            {
+                slots[index].Fill(item);
+                return true;
+            }
+
+            return false;
         }
 
-        if (right != null)
+        public Item RemoveItem(int index)
         {
-            Pickup pick = right.GetComponent<Pickup>();
-            if (pick != null && AddItem(new(pick.itemVar), index))
-                Destroy(right);
-        }
-    }
+            if (slots[index].myItem.InstanceActive)
+            {
+                Item i = slots[index].myItem;
+                slots[index].Clear();
+                return i;
+            }
 
-    public void NextPage()
-    {
-        slotsPages[currentPage].SetActive(false);
-        currentPage++;
-        if (currentPage >= maxPages - 1)
-        {
-            currentPage = maxPages - 1;
-            prevButton.interactable = true;
-            nextButton.interactable = false;
-        }
-        else
-        {
-            prevButton.interactable = true;
-            nextButton.interactable = true;
+            return null;
         }
 
-        slotsPages[currentPage].SetActive(true);
-    }
+        public void TryUseItem(int index)
+        {
+            if (!slots[index].myItem.InstanceActive)
+                return;
 
-    public void PrevPage()
-    {
-        slotsPages[currentPage].SetActive(false);
-        currentPage--;
-        if (currentPage <= 0)
-        {
-            currentPage = 0;
-            prevButton.interactable = false;
-            nextButton.interactable = true;
-        }
-        else
-        {
-            prevButton.interactable = true;
-            nextButton.interactable = true;
-        }
-        slotsPages[currentPage].SetActive(true);
-    }
+            Debug.Log("Using item: " + slots[index].myItem.itemName);
 
-    public void ApplyLoadedData(PlayerData data)
-    {
-        for (int i = 0; i < data.inventoryData.Length; i++)
+            //spawn the item near player to pick and use!
+            Vector3 playerForward = cameraT.forward;
+            Instantiate(itemPrefabs[slots[index].myItem.prefabIndex], cameraT.position + playerForward * 2f, Quaternion.LookRotation(playerForward));
+
+            RemoveItem(index);
+        }
+
+        public void TryAddPickedItem()
         {
-            if (data.inventoryData[i].InstanceActive)
-                slots[i].Fill(data.inventoryData[i]);
+            //get the object in either left or right hand!
+            PlayerHandObjectTracker handTracker = GameManager.playerObject.GetComponent<PlayerHandObjectTracker>();
+            GameObject left = handTracker.GetLeftHandObject(), right = handTracker.GetRightHandObject();
+
+            if (left != null)
+            {
+                Pickup pick = left.GetComponent<Pickup>();
+                if (pick != null && pick.canCarry && AddItem(new(pick.itemVar)))
+                    Destroy(left);
+            }
+
+            if (right != null)
+            {
+                Pickup pick = right.GetComponent<Pickup>();
+                if (pick != null && pick.canCarry && AddItem(new(pick.itemVar)))
+                    Destroy(right);
+            }
+        }
+
+        public void NextPage()
+        {
+            slotsPages[currentPage].SetActive(false);
+            currentPage++;
+            if (currentPage >= maxPages - 1)
+            {
+                currentPage = maxPages - 1;
+                prevButton.interactable = true;
+                nextButton.interactable = false;
+            }
             else
-                slots[i].Clear();
+            {
+                prevButton.interactable = true;
+                nextButton.interactable = true;
+            }
+
+            slotsPages[currentPage].SetActive(true);
+        }
+
+        public void PrevPage()
+        {
+            slotsPages[currentPage].SetActive(false);
+            currentPage--;
+            if (currentPage <= 0)
+            {
+                currentPage = 0;
+                prevButton.interactable = false;
+                nextButton.interactable = true;
+            }
+            else
+            {
+                prevButton.interactable = true;
+                nextButton.interactable = true;
+            }
+            slotsPages[currentPage].SetActive(true);
+        }
+
+        public void ApplyLoadedData(PlayerData data)
+        {
+            for (int i = 0; i < data.inventoryData.Length; i++)
+            {
+                if (data.inventoryData[i].InstanceActive)
+                    slots[i].Fill(data.inventoryData[i]);
+                else
+                    slots[i].Clear();
+            }
         }
     }
 }

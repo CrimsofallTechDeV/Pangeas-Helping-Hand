@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class MusicTrigger : MonoBehaviour
+namespace CrimsofallTechnologies.VR.Music 
 {
-    public AudioClip outMusicDay, outMusicNight, inMusicDay, inMusicNight;
-
-    private void OnTriggerEnter(Collider other)
+    public class MusicTrigger : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        public AudioClip outMusicDay, outMusicNight, inMusicDay, inMusicNight;
+
+        private void OnTriggerEnter(Collider other)
         {
-            GameManager.Instance.SetupMusic(inMusicDay, inMusicNight);
+            if (other.CompareTag("Player"))
+            {
+                GameManager.Instance.SetupMusic(inMusicDay, inMusicNight);
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerExit(Collider other)
         {
-            GameManager.Instance.SetupMusic(outMusicDay, outMusicNight);
-            //GameManager.Instance.ResetMusic();
+            if (other.CompareTag("Player"))
+            {
+                GameManager.Instance.SetupMusic(outMusicDay, outMusicNight);
+                //GameManager.Instance.ResetMusic();
+            }
         }
     }
 }

@@ -15,8 +15,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 15
-    y: 117
+    x: -28
+    y: 152
     width: 190
     height: 135
   IsDragging: 1
@@ -46,8 +46,8 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 737
-    y: 236
+    x: 694
+    y: 271
     width: 190
     height: 135
   IsDragging: 1
@@ -78,18 +78,20 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 476
-    y: 314
+    x: 433
+    y: 349
     width: 190
     height: 135
   IsDragging: 0
   IsSelected: 0
   _sentence:
-    CharacterName: 
-    Text: 
+    CharacterName: Gloomette Parlour
+    Text: I wish to travel the world, but its hard to do that if you were a toy like
+      me.
     CharacterSprite: {fileID: 0}
-  ParentNodes: []
-  ChildNode: {fileID: 0}
+  ParentNodes:
+  - {fileID: 450593631917157458}
+  ChildNode: {fileID: 8694486126883813338}
   _isExternalFunc: 0
   _externalFunctionName: 
   CharacterNameKey: 
@@ -133,18 +135,19 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 225
-    y: 164
+    x: 182
+    y: 199
     width: 190
     height: 115
   IsDragging: 0
-  IsSelected: 1
+  IsSelected: 0
   Answers:
   - Whats with the posters?
   AnswerKeys: []
   ParentNodes:
   - {fileID: -7976731446881594276}
-  ChildNodes: []
+  ChildNodes:
+  - {fileID: -1296295919888529204}
 --- !u!114 &8694486126883813338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,15 +163,16 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 589
-    y: 115
+    x: 546
+    y: 150
     width: 190
     height: 115
   IsDragging: 1
   IsSelected: 0
   Answers:
-  - Leave...
+  - Okay.
   AnswerKeys: []
-  ParentNodes: []
+  ParentNodes:
+  - {fileID: -1296295919888529204}
   ChildNodes:
   - {fileID: -3582574104031487304}

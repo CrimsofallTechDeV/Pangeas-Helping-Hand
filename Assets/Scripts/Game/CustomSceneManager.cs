@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[DefaultExecutionOrder(1)]
-public class CustomSceneManager : MonoBehaviour
+namespace CrimsofallTechnologies.VR.SceneManagement
 {
-    public Light sun;
-    public Material skyLight, skyDark;
-
-    public GameObject[] dayObjects, nightObjects;
-
-    public AudioClip musicClipDay, musicClipNight;
-    public GameEnder enderManager;
-
-    private void Awake()
+    [DefaultExecutionOrder(1)]
+    public class CustomSceneManager : MonoBehaviour
     {
-        GameManager.Instance.SetCustomSceneManager(this);
+        public Light sun;
+        public Material skyLight, skyDark;
+
+        public GameObject[] dayObjects, nightObjects;
+
+        public AudioClip musicClipDay, musicClipNight;
+        public GameEnder enderManager;
+
+        private void Awake()
+        {
+            GameManager.Instance.SetCustomSceneManager(this);
+        }
     }
 }

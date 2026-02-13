@@ -23,7 +23,7 @@ namespace CrimsofallTechnologies.VR.Gameplay
             bool created = GameManager.Instance.thingsDone.Contains("ToyCreated");
             for (int i = 0; i < toyAssets.Length; i++)
             {
-                toyAssets[i].SetActive(created);
+                toyAssets[i].SetActive(!created);
             }
             elephant.SetActive(created);
         }

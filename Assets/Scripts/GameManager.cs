@@ -78,6 +78,8 @@ namespace CrimsofallTechnologies.VR
         public bool EnteredEntrance { get; private set; }
         public bool CanEnterEntrances { get; set; }
 
+        private PlayerData cachedData;
+
         #region POINTS
 
         public int points { get; private set; }
@@ -225,7 +227,7 @@ namespace CrimsofallTechnologies.VR
             }
         }
 
-        public void LoadLevel(string Name)
+        public void LoadLevel(string Name, bool showLoadingUI = true)
         {
             //save player data!
             SavePlayerData();
@@ -233,8 +235,14 @@ namespace CrimsofallTechnologies.VR
             LoadingLevel = true;
             sceneName = Name;
             sceneM = null;
-            if(LoadingUI.Instance != null) LoadingUI.Instance.EnableScreen();
-            Invoke(nameof(DelayedLoadLevel), levelLoadDelay);
+            if(showLoadingUI && LoadingUI.Instance != null) {
+                LoadingUI.Instance.EnableScreen();
+                Invoke(nameof(DelayedLoadLevel), levelLoadDelay);
+            }
+            else
+            {
+                Invoke(nameof(DelayedLoadLevel), 0.25f);
+            }
         }
 
         private void DelayedLoadLevel()
@@ -255,16 +263,15 @@ namespace CrimsofallTechnologies.VR
 
         private void LoadPlayerData()
         {
-            PlayerData data = PlayerDataSaver.LoadData();
+            cachedData = PlayerDataSaver.LoadData();
 
-            if (data != null) {
-                playerInventory.ApplyLoadedData(data);
-                points = data.points;
+            if (cachedData != null) {
+                playerInventory.ApplyLoadedData(cachedData);
+                points = cachedData.points;
             
-                if(data.elephantCreated)
+                if(cachedData.elephantCreated)
                     thingsDone.Add("ToyCreated");
             }
-
 
             playerObject.GetComponentInChildren<GravityProvider>().useGravity = true;
             ui.UpdateUI();

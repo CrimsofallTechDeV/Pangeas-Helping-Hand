@@ -924,10 +924,10 @@ MonoBehaviour:
   houseClip: {fileID: 8300000, guid: f5044cc6a02b735478c6b54337ef4a50, type: 3}
   shootingClip: {fileID: 8300000, guid: 657de0f08e172f044b0792349b10644b, type: 3}
   triggerObjectEnabler: {fileID: 16098604}
-  cuteOnly: {fileID: 11400000, guid: 60a9dfe7e61d5ca41b2e13ac7516a45e, type: 2}
-  notMoveHere: {fileID: 11400000, guid: 8b45cfbd1ba68b74c81eeee26c933e93, type: 2}
-  win: {fileID: 11400000, guid: 2d137aeb7a5be80429a2e43b8efc1136, type: 2}
-  lose: {fileID: 11400000, guid: 4d350b469b87e1f4f9db75aa618d4ecc, type: 2}
+  cuteOnly: {fileID: 11400000, guid: 81e59dec21051224b9ed79ccb3e24d61, type: 2}
+  notMoveHere: {fileID: 11400000, guid: 1113e2831c3fc434eb4fbbcf51498884, type: 2}
+  win: {fileID: 11400000, guid: 8f870378878d74a4082e5edfb9828654, type: 2}
+  lose: {fileID: 11400000, guid: 36e837f8c1b71264aba1b404bcde678e, type: 2}
   movingBoards:
   - {fileID: 976186756}
   - {fileID: 636245145}

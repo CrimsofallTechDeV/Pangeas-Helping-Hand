@@ -27,6 +27,8 @@ public class PaintBrush : MonoBehaviour
 
 			if (Physics.Raycast(ray, out RaycastHit hit, distance, canvasMask))
 			{
+				if(hit.collider.tag != "Canvas") return; //ensure we only draw on canvas objects!
+
 				//ensure the brush does not keep spawning on once place!
 				if(Vector3.Distance(lastHitPoint, hit.point) >= spacing) 
 				{

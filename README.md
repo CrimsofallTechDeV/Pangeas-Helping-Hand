@@ -5,10 +5,10 @@ Pangeas Helping Hand is a VR game framework with several mini-games and interact
 Important: this repository is under a custom view-only license (see LICENSE). If you are not listed as a project collaborator you are only permitted to read and inspect the source code on GitHub. Cloning, copying, redistributing, modifying, or using the code in other projects is prohibited unless you have explicit collaborator permission.
 
 Repository snapshot
-- Owner: Crimsofall-Technologies
+- Owner: Crimsofall-Technologies, Tyler King (discord) AKA Realty Lerking.
 - Name: Pangeas-Helping-Hand
-- Primary language: C#
-- Default branch: main
+- Primary language: C# (mainly)
+- Default branch: master
 - URL: https://github.com/Crimsofall-Technologies/Pangeas-Helping-Hand
 
 Contents
@@ -61,9 +61,9 @@ Security & sensitive data
 - If you discover a security issue, report it privately to the repository owner.
 
 Acknowledgements
-- Project created for a client of Crimsofall-Technologies.
+- Project created for a client by Crimsofall Technologies.
 - VR runtimes: OpenXR / SteamVR / Oculus (as applicable)
 - Unity engine and community packages
 
 Contact
-- Repository owner: Crimsofall-Technologies — https://github.com/CrimsofallTechDeV
+- Repository owner: Crimsofall Technologies — https://github.com/CrimsofallTechDeV

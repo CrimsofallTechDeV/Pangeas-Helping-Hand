@@ -1,3 +1,4 @@
+using CrimsofallTechnologies.VR.DataSaving;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -90,7 +91,7 @@ namespace CrimsofallTechnologies.VR.Gameplay
             if(CurrentTape == "ORANGE_TAPE") sceneName ="Cloud City";
             if(CurrentTape == "BROWN_TAPE") sceneName ="Toy Land";
             if(CurrentTape == "PURPLE_TAPE") sceneName ="Dark Wood";
-            GameManager.Instance.LoadLevel(sceneName);
+            GameManager.Instance.LoadLevel(sceneName, true);
         }
 
         public void ShowCommercial()

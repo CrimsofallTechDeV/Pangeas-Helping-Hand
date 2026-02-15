@@ -9,7 +9,7 @@ Repository snapshot
 - Name: Pangeas-Helping-Hand
 - Primary language: C# (mainly)
 - Default branch: master
-- URL: https://github.com/Crimsofall-Technologies/Pangeas-Helping-Hand
+- URL: use from your web browser address bar.
 
 Contents
 - Assets/                - Unity Assets (scenes, prefabs, scripts)
@@ -49,7 +49,7 @@ Requesting collaborator access
   - Your GitHub username
   - Role (developer, tester, artist)
   - Reason for access and expected changes
-- Or contact the owner/organization directly: https://github.com/CrimsofallTechDeV
+- Or contact the owner directly.
 
 License summary
 This repository is distributed under a custom "View-Only License (Collaborator-Restricted)". The LICENSE file in this repository contains the full terms. In short:

@@ -1,11 +1,11 @@
 # Pangeas Helping Hand
 
-Pangeas Helping Hand is a VR game framework with several mini-games and interaction prototypes. This repository contains the C# source and Unity project files used while building the project for a client. The project is structured as a Unity VR experience and targets common VR runtimes (OpenXR, SteamVR, Oculus).  
+Pangeas Helping Hand is a VR game framework with several mini-games and interaction prototypes. This repository contains the C# source and Unity project files used while building the project. The project is structured as a Unity VR experience and targets common VR runtimes (OpenXR, SteamVR, Oculus).  
 
 Important: this repository is under a custom view-only license (see LICENSE). If you are not listed as a project collaborator you are only permitted to read and inspect the source code on GitHub. Cloning, copying, redistributing, modifying, or using the code in other projects is prohibited unless you have explicit collaborator permission.
 
 Repository snapshot
-- Owner: Crimsofall-Technologies, Tyler King (discord) AKA Realty Lerking.
+- Owner: Tyler King (discord: realtylerking), YouTube: @Theeffedgamers.
 - Name: Pangeas-Helping-Hand
 - Primary language: C# (mainly)
 - Default branch: master
@@ -40,7 +40,7 @@ Project structure (typical Unity layout)
 - .gitignore — recommended Unity-specific ignores (if present)
 
 Contributing
-This is a client project. Contributions are restricted to approved collaborators only.
+Contributions are restricted to approved collaborators only.
 - If you are a maintained contributor or a client-assigned developer, request collaborator access from the repository owner or open an issue to request access (if issues are enabled).
 - Once you are granted collaborator status, follow the repository’s branch and PR workflow (create feature branches off main, open pull requests, request reviews).
 
@@ -66,4 +66,5 @@ Acknowledgements
 - Unity engine and community packages
 
 Contact
-- Repository owner: Crimsofall Technologies — https://github.com/CrimsofallTechDeV
+- Repository owner: Tyler King - discord: realtylerking, YouTube: @Theeffedgamers.
+- Crimsofall Technologies: (https://github.com/CrimsofallTechDeV), (https://crimsofall.com/contact/)
